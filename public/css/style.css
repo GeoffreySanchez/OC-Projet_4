@@ -1,0 +1,240 @@
+/* Reset */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+
+
+
+
+/* Général */
+
+h1 {
+    text-align: center;
+
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+h3 {
+    background-color: rgb(103, 186, 191);
+    color: white;
+    margin-bottom: 0;
+    max-width: 190px;
+}
+
+.news p {
+    background-color: #CCCCCC;
+    margin-top: 0px;
+}
+
+.news {
+    width: 80%;
+    margin-left: 15%;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+
+
+
+
+/* Menu de navigation */
+
+nav {
+    display: flex;
+    margin-top: 15px;
+}
+
+ul {
+    align-content: center;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+#public {
+    left: 3%;
+    position: relative;
+}
+
+#admin {
+    right: 3%;
+    position: absolute;
+}
+
+li {
+    list-style: none;
+    padding-left: 20px;
+}
+
+li a {
+    color: white;
+    padding: 3px;
+}
+
+li a:hover {
+    border-bottom: 1px black solid;
+    padding-bottom: 5px;
+    color: black;
+}
+
+#adminPanel {}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    background-color: rgb(103, 186, 191);
+}
+
+
+
+
+
+/* Contenu */
+
+#content {
+    margin-top: 75px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(220, 223, 229);
+}
+
+
+
+
+
+/* footer */
+
+footer {
+    background-color: rgb(103, 186, 191);
+}
+
+footer p,
+footer a {
+    color: white;
+}
+
+#contact p {
+    margin-top: 0;
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+#contact {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+#contactMail,
+contactCourrier {
+    display: flex;
+}
+
+#contactMail {
+    margin-bottom: 15px;
+}
+
+alt {
+    color: white;
+}
+
+
+
+
+
+/* Home page */
+
+#presentation {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+#texteAuteur {
+    max-width: 450px;
+    margin-top: 50vh;
+    transform: translateY(-125%);
+}
+
+#photoAuteur img {
+    max-width: 400px;
+    width: 100%;
+}
+
+#projetEnCours {
+    margin-top: 50px;
+}
+
+.projet {
+    text-align: center;
+    max-width: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#projetAVenir form,
+#projetAVenir p,
+#projetAVenir i {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#projetAVenir p {
+    margin-bottom: 0;
+}
+
+#projetAVenir i {
+    margin-bottom: 20px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+label {
+    display: flex;
+}
+
+#validationFormulaire {
+    max-width: 100px;
+}
+
+#choixProjet {
+    margin-bottom: 10px;
+}
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
