@@ -7,7 +7,7 @@
     <div id="books">
         <?php
 while ($data = $books->fetch())
-{
+    if ($data['summary'] != "Projet à venir") {
 ?>
             <div id="book">
                 <div id="book_title">
@@ -20,11 +20,26 @@ while ($data = $books->fetch())
                         <br />
                 </p>
                 <div id="listeChapitre" class="animated shake">
-                            <em><a href="">Accès aux chapitres</a></em>
-                        </div>
+                    <em><a href="">Accès aux chapitres</a></em>
+                </div>
             </div>
             <?php
 }
+        else {
+            ?>
+            <div id="workInProgress">
+                <div id="book_title">
+                    <h3>
+                        <?= htmlspecialchars($data['title']) ?>
+                    </h3>
+                </div>
+                <p id="summary">
+                    <?= nl2br(htmlspecialchars($data['summary'])) ?>
+                        <br />
+                </p>
+            </div>
+            <?php
+        }
 $books->closeCursor();
 ?>
     </div>
