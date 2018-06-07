@@ -174,8 +174,9 @@ alt {
 
 #texteAuteur {
     max-width: 450px;
-    margin-top: 50vh;
-    transform: translateY(-125%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #photoAuteur img {
