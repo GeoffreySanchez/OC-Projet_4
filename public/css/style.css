@@ -227,8 +227,54 @@ label {
     margin-bottom: 10px;
 }
 
-/*  */
+/* Liste livres */
 
+#books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+#book h3 {
+    text-align: center;
+}
+
+#book {
+    max-width: 300px;
+    min-width: 299px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#book_title {
+    display: flex;
+    justify-content: center;
+}
+
+#summary {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#listeChapitre {
+    text-align: center;
+}
+
+em a {
+    color: black;
+    text-decoration: underline;
+}
+
+em a:hover {
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: white;
+    padding: 3px;
+}
+}
 /*  */
 
 /*  */

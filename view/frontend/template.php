@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title><?= $title ?></title>
-        <link href="public/css/style.css" rel="stylesheet" />
-    </head>
 
-    <body>
-       <header>
-          <nav>
-               <ul id="public">
-                   <li><a href="">Acceuil</a></li>
-                   <li><a href="">Liste des romans</a></li>
-               </ul>
-               <ul id="admin">
-                   <li ><a href="">Connexion</a></li>
-               </ul>
-           </nav>
-       </header>
-        <?= $content ?>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        <?= $title ?>
+    </title>
+    <link href="public/css/style.css" rel="stylesheet" />
+    <link href="public/css/animate.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul id="public">
+                <li class="animated pulse"><a href="index.php">Acceuil</a></li>
+                <li class="animated pulse"><a href="index.php?action=books">Liste des romans</a></li>
+            </ul>
+            <ul id="admin">
+                <li class="animated pulse"><a href="">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <?= $content ?>
         <footer>
             <div id="contact">
-              <h4>Informations de contact: </h4>
-               <div id="contactMail">
+                <h4>Informations de contact: </h4>
+                <div id="contactMail">
                     <img src="../../public/images/mail.png" alt="icone de mail" />
                     <p>: Jean.forteroche@contact.fr</p>
                 </div>
@@ -32,5 +36,6 @@
                 </div>
             </div>
         </footer>
-    </body>
+</body>
+
 </html>
