@@ -160,9 +160,19 @@ alt {
     color: white;
 }
 
+#infosContact {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
+#contactCourrier {
+    display: flex;
+}
 
-
+#contactCourrier img {
+    max-height: 51px;
+}
 
 /* Home page */
 
