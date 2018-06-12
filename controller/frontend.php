@@ -4,22 +4,21 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/BookManager.php');
 
-function listBooks()
-{
+function listBooks() {
     $bookManager = new bookManager();
     $books = $bookManager->getBooks();
     require('view/frontend/listBooks.php');
 }
 
-function listPosts()
-{
+function listPosts() {
     $postManager = new PostManager();
-    $posts = $postManager->getPosts();
+    $bookManager = new bookManager();
+    $posts = $postManager->getPosts($_GET['id']);
+    $book = $bookManager->getBook($_GET['id']);
     require('view/frontend/listPostsView.php');
 }
 
-function post()
-{
+function post() {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
     $post = $postManager->getPost($_GET['id']);
@@ -27,8 +26,7 @@ function post()
     require('view/frontend/postView.php');
 }
 
-function addComment($postId, $author, $comment)
-{
+function addComment($postId, $author, $comment) {
     $commentManager = new CommentManager();
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
     if ($affectedLines === false) {
@@ -39,8 +37,7 @@ function addComment($postId, $author, $comment)
     }
 }
 
-function comment()
-{
+function comment() {
     $commentManager = new CommentManager();
     $comment = $commentManager->getComment($_GET['id']);
     require('view/frontend/modifyComment.php');
@@ -58,8 +55,6 @@ function updateComment($comment, $id)
     }
 }
 
-function home()
-{
+function home() {
    require('view/frontend/homePage.php');
 }
-

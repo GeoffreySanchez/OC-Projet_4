@@ -20,7 +20,7 @@ while ($data = $books->fetch())
                         <br />
                 </p>
                 <div id="listeChapitre" class="animated shake">
-                    <em><a href="">Accès aux chapitres</a></em>
+                    <em><a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">Accès aux chapitres</a></em>
                 </div>
             </div>
             <?php

@@ -25,17 +25,6 @@ h3 {
     background-color: rgb(103, 186, 191);
     color: white;
     margin-bottom: 0;
-    max-width: 190px;
-}
-
-.news p {
-    background-color: #CCCCCC;
-    margin-top: 0px;
-}
-
-.news {
-    width: 80%;
-    margin-left: 15%;
 }
 
 a {
@@ -147,6 +136,10 @@ footer a {
     margin-left: 3%;
 }
 
+#contact h4 {
+    text-decoration: underline;
+}
+
 #contactMail,
 contactCourrier {
     display: flex;
@@ -254,7 +247,6 @@ label {
 #book {
     max-width: 300px;
     min-width: 299px;
-    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -282,7 +274,7 @@ em a {
 em a:hover {
     text-decoration: none;
     border: 1px solid black;
-    color: black;
+    color: white;
     background-color: rgb(103, 186, 191);
     padding: 3px;
 }
@@ -298,9 +290,56 @@ em a:hover {
 #workInProgress #summary {
     margin-top: 100px;
 }
-/*  */
 
-/*  */
+
+
+
+
+/* Organisation chapitres */
+
+.chapter p {
+    background-color: white;
+    margin-top: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.chapter {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.chapter h3 {
+    min-width: 210px;
+    padding-left: 5px;
+}
+
+h3 em {
+    font-size: 0.75em;
+}
+
+.chapter p em {
+    display: flex;
+    padding-top: 10px;
+}
+
+
+
+
+
+/* Chapitre */
+
+#retourRoman a {
+    color: white;
+}
+
+#retourRoman {
+    width: 200px;
+    text-align: center;
+    background-color: rgb(103, 186, 191);
+}
 
 /*  */
 
