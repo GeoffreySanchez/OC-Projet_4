@@ -5,7 +5,7 @@
     <h1>Bienvenue lecteurs !</h1>
     <div id="presentation">
         <div id="photoAuteur">
-            <img src="../../public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">
+            <img src="public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">
         </div>
         <div id="texteAuteur">
             <p>Je vous souhaite à toutes et à tous la bienvenue sur mon tout nouveau blog.</p>
