@@ -56,5 +56,7 @@ function updateComment($comment, $id)
 }
 
 function home() {
-   require('view/frontend/homePage.php');
+    $bookManager = new bookManager();
+    $books = $bookManager->getBooks();
+    require('view/frontend/homePage.php');
 }

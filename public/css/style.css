@@ -36,6 +36,12 @@ h3 {
     background-color: rgb(103, 186, 191);
     color: white;
     margin-bottom: 0;
+    padding: 5px;
+}
+
+h3 a {
+    color: white;
+    text-decoration: underline;
 }
 
 a {
@@ -199,6 +205,10 @@ alt {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#photoAuteur {
+    margin-right: 10px;
 }
 
 #photoAuteur img {

@@ -11,13 +11,11 @@ while ($data = $books->fetch())
 ?>
             <div id="book">
                 <div id="book_title">
-                    <h3>
-                        <?= htmlspecialchars($data['title']) ?>
-                    </h3>
+                    <h3><?= htmlspecialchars($data['title']) ?></h3>
                 </div>
                 <p id="summary">
-                    <?= nl2br(htmlspecialchars($data['summary'])) ?>
-                        <br />
+                <?= nl2br(htmlspecialchars($data['summary'])) ?>
+                <br />
                 </p>
                 <div id="listeChapitre" class="animated shake">
                     <em><a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">Accès aux chapitres</a></em>

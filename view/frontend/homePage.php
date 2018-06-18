@@ -8,17 +8,33 @@
             <img src="public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">
         </div>
         <div id="texteAuteur">
-            <p>Je vous souhaite à toutes et à tous la bienvenue sur mon tout nouveau blog.</p>
-            <p>Je m'appelle Jean Forteroche, j'ai 54 ans et je suis né à Paris. Je suis passionné d'écriture depuis mon enfance et j'achevais ma première nouvelle à l'âge de 14 ans.</p>
-            <p>Vous trouverez sur ce tout nouveau blog les prochains chapitres sur lesquelles je travaille actuellement ainsi que mes futurs romans de la même série "Billet simple pour ..."</p>
+            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.</p>
+            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.</p>
+            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant. Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant."</p>
         </div>
     </div>
     <div id="projets">
         <div id="projetEnCours">
             <h2>Les projets en cours :</h2>
-            <div class="projet">
-                <h3>Billet simple pour l'Alaska</h3>
-                <p>Ce roman raconte le parcours d'un musher français parti en Alaska, que va-t-il lui arriver ?</p>
+            <div id="projets">
+                <?php
+                while ($data = $books->fetch())
+                    if(strlen($data['title']) > 25){
+                ?>
+                <div class="projet">
+                    <h3 class="animated shake">
+                        <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">
+                            <?= htmlspecialchars($data['title']) ?>
+                        </a>
+                    </h3>
+                    <p>
+                        <?= nl2br(htmlspecialchars($data['summaryMin'])) ?>...</p>
+                </div>
+                <?php
+                    }
+                $books->closeCursor();
+                ?>
+
             </div>
         </div>
         <div id="projetAVenir">
