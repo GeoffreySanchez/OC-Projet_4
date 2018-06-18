@@ -174,6 +174,18 @@ alt {
     max-height: 51px;
 }
 
+#contactTitle {
+    display: flex;
+    max-width: max-content;
+}
+
+#contactTitle img {
+    width: 20px;
+    height: 20px;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
 /* Home page */
 
 #presentation {
