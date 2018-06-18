@@ -412,12 +412,45 @@ h3 em {
 
 #comment p {
     max-width: max-content;
+    max-width: -moz-max-content;
     width: 100%;
     background-color: white;
     padding: 7px;
 }
-/*  */
 
+
+/* Login page */
+
+#retourMainPage {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: rgb(103, 186, 191);
+}
+
+#retourMainPage a {
+    color: white;
+}
+
+#presentationAdmin {
+    text-align: center;
+}
+
+#formulaireConnexion {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#formulaireConnexion form {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}
+
+#formulaireConnexion form label {
+    margin-bottom: 5px;
+}
 /*  */
 
 /*  */

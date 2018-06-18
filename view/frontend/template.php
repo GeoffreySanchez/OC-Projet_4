@@ -20,7 +20,7 @@
                 <li class="animated pulse"><a href=""><i class="fas fa-arrow-up"></i> haut de page</a></li>
             </ul>
             <ul id="admin">
-                <li class="animated pulse"><a href=""><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li class="animated pulse"><a href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
             </ul>
         </nav>
     </header>

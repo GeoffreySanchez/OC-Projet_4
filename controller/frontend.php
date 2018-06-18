@@ -60,3 +60,7 @@ function home() {
     $books = $bookManager->getBooks();
     require('view/frontend/homePage.php');
 }
+
+function login() {
+    require('view/frontend/loginPage.php');
+}
