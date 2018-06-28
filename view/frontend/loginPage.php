@@ -1,24 +1,45 @@
-<?php $title = 'Identifiez vous'; ?>
+<?php
+session_start();
+$title = 'Identifiez vous'; ?>
 
 <?php ob_start(); ?>
 <div id="content">
-    <div id="presentationAdmin">
-        <p>
-            Cette page de connexion est réservée à Jean Forteroche ainsi que son équipe de modération.
-            <br /> Cliquez sur le lien ci-desous pour retrouver votre chemin.
-        </p>
-        <div id="retourMainPage" class="animated shake">
-            <a href="index.php">Retour à l'accueil</a>
+    <?php
+    if ($_SESSION['name'] == 'Invité'){
+      ?>
+        <div id="presentationAdmin">
+            <p>
+                Cette page de connexion est réservée à Jean Forteroche ainsi que son équipe de modération.
+                <br /> Cliquez sur le lien ci-desous pour retrouver votre chemin.
+            </p>
+            <div id="retourMainPage">
+                <a href="index.php" class="animated shake">Retour à l'accueil</a>
+            </div>
         </div>
-    </div>
-    <div id="formulaireConnexion">
-            <form action="post" action="">
-                <label for="idField">Identifiant</label><input type="text" id="idField">
-                <label for="pwField">Mot de passe</label><input type="text" id="pwField">
-                <input type="submit">
+        <hr />
+        <div id="formulaireConnexion">
+            <form method="post" action="index.php?action=loginVerification">
+                <label for="idField">Identifiant</label><input type="text" id="idField" name="idField">
+                <label for="pwField">Mot de passe</label><input type="password" id="pwField" name="pwField">
+                <label for="envoyerConnexion" id="envoyerConnexionAlign">
+            <input id="envoyerConnexion" type="submit"></label>
             </form>
         </div>
+        <?php
+    }
+    else {
+     ?>
+        <div id="accesPannelAdmin">
+            <p>Bienvenue
+                <?= $_SESSION['name'];?>
+            </p>
+            <a href="">Accès au pannel d'administration</a>
+        </div>
+        <?php
+    }
+    ?>
 </div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

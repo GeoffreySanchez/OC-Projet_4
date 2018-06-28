@@ -1,7 +1,5 @@
 <?php
-
 require('controller/frontend.php');
-
 try {
     // ...
 }

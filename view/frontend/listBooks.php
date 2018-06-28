@@ -1,4 +1,6 @@
-<?php $title = 'Mes romans'; ?>
+<?php
+session_start();
+$title = 'Mes romans'; ?>
 
 <?php ob_start(); ?>
 

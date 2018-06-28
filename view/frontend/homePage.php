@@ -1,4 +1,6 @@
-<?php $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
+<?php
+session_start();
+$title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
 <div id="content">

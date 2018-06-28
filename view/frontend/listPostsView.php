@@ -1,4 +1,6 @@
-<?php $title = htmlspecialchars($book['title']); ?>
+<?php
+session_start();
+$title = htmlspecialchars($book['title']); ?>
 
 <?php ob_start(); ?>
 

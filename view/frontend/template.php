@@ -19,9 +19,23 @@
                 <li class="animated pulse"><a href="index.php?action=books"><i class="fas fa-book"></i> Liste des romans</a></li>
                 <li class="animated pulse"><a href=""><i class="fas fa-arrow-up"></i> haut de page</a></li>
             </ul>
+            <?php
+            if($_SESSION['name'] == 'Invité') {
+            ?>
             <ul id="admin">
                 <li class="animated pulse"><a href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
             </ul>
+            <?php
+            }
+            else {
+                ?>
+                <ul id="admin">
+                <li class="animated pulse"><a href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Administration</a></li>
+                <li class="animated pulse"><a href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Déconnexion</a></li>
+            </ul>
+                <?php
+            }
+            ?>
         </nav>
     </header>
     <p id="haut"></p>

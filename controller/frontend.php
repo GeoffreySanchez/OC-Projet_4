@@ -3,6 +3,7 @@
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/BookManager.php');
+require_once('model/LoginManager.php');
 
 function listBooks() {
     $bookManager = new bookManager();
@@ -62,5 +63,28 @@ function home() {
 }
 
 function login() {
+    $usersManager = new LoginManager();
+    $users = $usersManager->getUsers();
     require('view/frontend/loginPage.php');
+}
+
+function logout() {
+    session_start();
+                    $_SESSION['name'] = 'Invité';
+                    $_SESSION['password'] = '';
+                    header('Location: index.php');
+}
+
+function loginVerification ($name, $password) {
+    $loginManager = new LoginManager();
+    $verification = $loginManager->loginVerification($name, $password);
+    if ($verification == true) {
+                    session_start();
+                    $_SESSION['name'] = $name;
+                    $_SESSION['password'] = $password;
+                    header('Location: index.php');
+                }
+                else {
+                    throw new Exception('Mauvais identifiant ou mot de passe');
+                }
 }

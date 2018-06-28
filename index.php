@@ -52,10 +52,21 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        elseif ($_GET['action'] == 'login'){
+        elseif ($_GET['action'] == 'login') {
             login();
         }
+        elseif ($_GET['action'] == 'logout') {
+            logout();
+        }
+        elseif ($_GET['action'] == 'loginVerification') {
+            if(isset($_POST['idField']) && isset($_POST['pwField'])) {
+                loginVerification($_POST['idField'], $_POST['pwField']);
+            }
+        }
     }
+    elseif(isset($_POST['ancre']) && !empty($_POST['ancre'])){
+    header("Location: ".$_POST['ancre']."");
+}
     else {
         home();
     }
