@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == '') {
+   session_start();
+}
 $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>

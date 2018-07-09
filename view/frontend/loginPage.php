@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == '') {
+   session_start();
+}
 $title = 'Identifiez vous'; ?>
 
 <?php ob_start(); ?>
@@ -10,7 +12,7 @@ $title = 'Identifiez vous'; ?>
         <div id="presentationAdmin">
             <p>
                 Cette page de connexion est réservée à Jean Forteroche ainsi que son équipe de modération.
-                <br /> Cliquez sur le lien ci-desous pour retrouver votre chemin.
+                <br /> Cliquez sur le lien ci-dessous pour retrouver votre chemin.
             </p>
             <div id="retourMainPage">
                 <a href="index.php" class="animated shake">Retour à l'accueil</a>
@@ -33,7 +35,7 @@ $title = 'Identifiez vous'; ?>
             <p>Bienvenue
                 <?= $_SESSION['name'];?>
             </p>
-            <a href="">Accès au pannel d'administration</a>
+            <a href="index.php?action=adminPage">Accès au pannel d'administration</a>
         </div>
         <?php
     }

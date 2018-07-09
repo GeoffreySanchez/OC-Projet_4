@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == '') {
+   session_start();
+}
 ?>
 <?php $title = htmlspecialchars($post['title']); ?>
 
@@ -20,10 +22,10 @@ session_start();
     </div>
 
     <h2>Commentaires</h2>
-    <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>&amp;book_id=<?= $_GET['book_id'] ?>" method="post">
+    <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>&amp;book_id=<?= $_GET['book_id'] ?>&amp;user_id=<?= $_GET['user_id'] ?>" method="post">
         <div>
             <label for="commentWriter">Veuillez saisir votre commentaire</label>
-            <textarea id="commentWriter" name="comment"></textarea>
+            <textarea id="commentWriter" name="comment" required></textarea>
         </div>
         <div>
             <input type="submit" />

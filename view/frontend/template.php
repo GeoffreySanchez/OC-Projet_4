@@ -1,7 +1,16 @@
+<?php
+if(!isset($_SESSION['name'])) {
+    $_SESSION['name'] = 'Invité';
+}
+if (!isset($_SESSION['id'])) {
+    $_SESSION['id'] = '3';
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=tsai70jk82c8slzi04uo143un10s7dpj8ltaiehcysqp3ymq"></script>
     <meta charset="utf-8" />
     <title>
         <?= $title ?>
@@ -30,7 +39,7 @@
             else {
                 ?>
                 <ul id="admin">
-                <li class="animated pulse"><a href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Administration</a></li>
+                <li class="animated pulse"><a href="index.php?action=adminPage"><i class="fas fa-sign-in-alt"></i> Administration</a></li>
                 <li class="animated pulse"><a href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Déconnexion</a></li>
             </ul>
                 <?php

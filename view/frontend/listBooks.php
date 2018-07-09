@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == '') {
+   session_start();
+}
 $title = 'Mes romans'; ?>
 
 <?php ob_start(); ?>
@@ -9,7 +11,7 @@ $title = 'Mes romans'; ?>
     <div id="books">
         <?php
 while ($data = $books->fetch())
-    if ($data['summary'] != "Projet à venir") {
+    if (strlen($data['summary']) > 100) {
 ?>
             <div id="book">
                 <div id="book_title">

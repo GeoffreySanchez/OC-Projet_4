@@ -17,13 +17,13 @@ class CommentManager extends Manager
         return $comments;
     }
 
-    public function postComment($postId, $comment)
+    public function postComment($postId, $comment, $userId)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('
-        INSERT INTO comments(post_id, comment, user_id, comment_date)
-        VALUES(?, ?, 3, NOW())');
-        $affectedLines = $comments->execute(array($postId, $comment));
+        INSERT INTO comments(post_id, comment, user_id, comment_date, report)
+        VALUES(?, ?, ?, NOW(), 0)');
+        $affectedLines = $comments->execute(array($postId, $comment, $userId));
         return $affectedLines;
     }
 
@@ -40,6 +40,20 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    public function getReportedComments()
+    {
+        $db = $this->dbConnect();
+        $reportedComments = $db->prepare('
+        SELECT comments.id, comments.post_id, comments.user_id, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, comments.report, users.name
+        FROM users
+        INNER JOIN comments
+        ON comments.user_id = users.id
+        WHERE comments.report >= 1
+        ORDER BY comment_date DESC');
+        $reportedComments->execute(array());
+        return $reportedComments;
+    }
+
     public function updateComment($comment, $id)
     {
         $db = $this->dbConnect();
@@ -49,5 +63,14 @@ class CommentManager extends Manager
         WHERE id = "'.$id.'" ');
         $updateComment = $comments->execute(array($comment, $id));
         return $updateComment;
+    }
+
+    public function deleteComments($id)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('
+        DELETE FROM comments WHERE id = ?');
+        $deleteComment = $comments->execute(array($id));
+        return $deleteComments;
     }
 }

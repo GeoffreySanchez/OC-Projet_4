@@ -13,6 +13,16 @@ class LoginManager extends Manager
         return $users;
     }
 
+    public function getUserId($name) {
+        $db = $this->dbConnect();
+        $userId = $db->prepare('
+        SELECT id
+        FROM users
+        WHERE name = ?');
+        $userId->execute(array($name));
+        $id = $userId->fetch();
+        return $id['id'];
+    }
     public function loginVerification($name, $password) {
         $db = $this->dbConnect();
         $verification = $db->prepare('

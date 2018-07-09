@@ -27,14 +27,14 @@ function post() {
     require('view/frontend/postView.php');
 }
 
-function addComment($postId, $bookId, $comment) {
+function addComment($postId, $bookId, $comment, $userId) {
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($postId, $comment);
+    $affectedLines = $commentManager->postComment($postId, $comment, $userId);
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id='.$postId.'&book_id='.$bookId);
+        header('Location: index.php?action=post&id='.$postId.'&book_id='.$bookId.'&user_id='.$userId);
     }
 }
 
@@ -70,21 +70,61 @@ function login() {
 
 function logout() {
     session_start();
-                    $_SESSION['name'] = 'Invité';
-                    $_SESSION['password'] = '';
-                    header('Location: index.php');
+    $_SESSION['name'] = 'Invité';
+    $_SESSION['password'] = '';
+    $_SESSION['id'] = '3';
+    header('Location: index.php');
 }
 
 function loginVerification ($name, $password) {
     $loginManager = new LoginManager();
     $verification = $loginManager->loginVerification($name, $password);
+    $recuperationId = $loginManager->getUserId($name);
     if ($verification == true) {
                     session_start();
                     $_SESSION['name'] = $name;
-                    $_SESSION['password'] = $password;
-                    header('Location: index.php');
+                    $_SESSION['password'] = MD5($password);
+                    $_SESSION['id'] = $recuperationId;
+                    header('Location: index.php?action=adminPage');
                 }
                 else {
                     throw new Exception('Mauvais identifiant ou mot de passe');
                 }
+}
+
+function adminPage() {
+    if ($_SESSION['name'] != 'Invité') {
+        $bookManager = new bookManager();
+        $books = $bookManager->getBooks();
+        $commentManager = new CommentManager();
+        $reportedComments = $commentManager->getReportedComments();
+        require('view/frontend/adminPage.php');
+    }
+    else {
+        require('view/frontend/homePage.php');
+    }
+}
+
+function adminComments() {
+    if ($_SESSION['name'] != 'Invité') {
+        $bookManager = new bookManager();
+        $books = $bookManager->getBooks();
+        $commentManager = new CommentManager();
+        $reportedComments = $commentManager->getReportedComments();
+        require('view/frontend/adminComments.php');
+    }
+    else {
+        require('view/frontend/homePage.php');
+    }
+}
+
+function deleteComment($id) {
+    if ($_SESSION['name'] != 'Invité') {
+        $commentManager = new CommentManager();
+        $deleteComment = $commentManager->deleteComments($id);
+        header('Location: index.php?action=adminComments');
+    }
+    else {
+        require('view/frontend/homePage.php');
+    }
 }

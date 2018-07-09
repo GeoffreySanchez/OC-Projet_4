@@ -39,6 +39,10 @@ h3 {
     padding: 5px;
 }
 
+h4 {
+    text-decoration: underline;
+}
+
 h3 a {
     color: white;
     text-decoration: underline;
@@ -223,9 +227,11 @@ alt {
 .projet {
     text-align: center;
     max-width: 310px;
+    min-height: 175px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 #projetAVenir form,
@@ -424,11 +430,11 @@ h3 em {
 #retourMainPage {
     display: flex;
     justify-content: center;
-    padding: 5px;
-    background-color: rgb(103, 186, 191);
 }
 
 #retourMainPage a {
+    padding: 5px;
+    background-color: rgb(103, 186, 191);
     color: white;
 }
 
@@ -451,6 +457,83 @@ h3 em {
 #formulaireConnexion form label {
     margin-bottom: 5px;
 }
-/*  */
 
+#envoyerConnexionAlign {
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    margin-top: 50px;
+    max-width: 400px;
+}
+
+
+
+
+
+/* Admin page */
+#infosAdmin {
+    margin-bottom: 25px;
+}
+
+#reportedTitle a{
+    color: red;
+}
+
+.section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.section h3 {
+    color: black;
+    background-color: transparent;
+    border: solid black 1px;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+#listeRomansAdmin {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#boutonAjout {
+    display: flex;
+}
+
+#boutonAjout a {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    color: black;
+}
+
+#ajoutRomanBouton {
+    display: flex;
+    justify-content: center;
+    color: rgb(103, 186, 191);
+}
+
+a i {
+    padding-top: 5px;
+}
+
+#reportedComments a {
+    color: red;
+}
+
+.linkPosition {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.linkPosition a {
+    padding-bottom: 5px;
+    color: red;
+}
 /*  */

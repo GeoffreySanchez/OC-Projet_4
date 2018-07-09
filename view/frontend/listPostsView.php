@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == '') {
+   session_start();
+}
 $title = htmlspecialchars($book['title']); ?>
 
 <?php ob_start(); ?>
@@ -20,7 +22,7 @@ while ($data = $posts->fetch()) {
             <p>
                 <?= nl2br(htmlspecialchars($data['content'])) ?><br />
                     <em>
-                    <a href="index.php?action=post&amp;id=<?= $data['id'] ?>&amp;book_id=<?= $book['id'] ?>">commenter</a>
+                    <a href="index.php?action=post&amp;id=<?= $data['id'] ?>&amp;book_id=<?= $book['id'] ?>&amp;user_id=<?= $_SESSION['id'] ?>">commenter</a>
                 </em>
             </p>
         </div>
@@ -34,7 +36,7 @@ while ($data = $posts->fetch()) {
                 <p>
                     <?= nl2br(htmlspecialchars($data['contentMin'])) ?> ...
                         <br />
-                        <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>&amp;book_id=<?= $book['id'] ?>">Lire la suite et commenter</a></em>
+                        <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>&amp;book_id=<?= $book['id'] ?>&amp;user_id=<?= $_SESSION['id'] ?>">Lire la suite et commenter</a></em>
                 </p>
             </div>
             <?php
