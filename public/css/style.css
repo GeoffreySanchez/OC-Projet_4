@@ -416,14 +416,21 @@ h3 em {
     max-width: 210px;
 }
 
-#comment p {
+.comment {
     max-width: max-content;
     max-width: -moz-max-content;
-    width: 100%;
     background-color: white;
+}
+
+.comment p {
+    width: 100%;
     padding: 7px;
 }
 
+.comment a {
+    margin-top: 5px;
+    color: red;
+}
 
 /* Login page */
 

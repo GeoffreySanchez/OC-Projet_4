@@ -128,3 +128,9 @@ function deleteComment($id) {
         require('view/frontend/homePage.php');
     }
 }
+
+function reportComment ($commentId, $id, $book_id, $user_id) {
+    $commentManager = new CommentManager();
+    $addReport = $commentManager->reportComment($commentId);
+    header('Location: index.php?action=post&id='.$id.'&book_id='.$book_id.'&user_id='.$user_id.'');
+}

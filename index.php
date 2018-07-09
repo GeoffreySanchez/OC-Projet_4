@@ -31,6 +31,14 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        elseif ($_GET['action'] == 'reportComment') {
+            if (isset($_GET['comment_id']) && $_GET['comment_id'] > 0) {
+                reportComment($_GET['comment_id'], $_GET['id'], $_GET['book_id'], $_GET['user_id']);
+            }
+            else {
+                throw new Exception('prout');
+            }
+        }
         elseif ($_GET['action'] == 'modify') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
             }

@@ -23,7 +23,7 @@ $title = 'Administration des commentaires'; ?>
                 <?php
                     while($reportedComment = $reportedComments->fetch()) {
                 ?>
-                    <div id="comment">
+                    <div class="comment">
                         <p>
                             <strong><?= htmlspecialchars($reportedComment['name']) ?></strong> le
                             <?= $reportedComment['comment_date_fr'] ?>

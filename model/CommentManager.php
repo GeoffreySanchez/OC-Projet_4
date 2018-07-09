@@ -7,7 +7,7 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('
-        SELECT comments.id, comments.post_id, comments.user_id, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, users.id, users.name
+        SELECT comments.id AS commentId , comments.post_id, comments.user_id, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, users.id, users.name
         FROM users
         INNER JOIN comments
         ON comments.user_id = users.id
@@ -72,5 +72,15 @@ class CommentManager extends Manager
         DELETE FROM comments WHERE id = ?');
         $deleteComment = $comments->execute(array($id));
         return $deleteComments;
+    }
+
+    public function reportComment($id) {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('
+        UPDATE comments
+        SET report = 1
+        WHERE id = ?');
+        $addReport = $comments->execute(array($id));
+        return $addReport;
     }
 }

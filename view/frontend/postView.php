@@ -35,12 +35,13 @@ if (session_id() == '') {
 while ($comment = $comments->fetch()) {
     ?>
 
-        <div id="comment">
+        <div id="<?= $comment['commentId']?>" class="comment">
             <p><strong><?= htmlspecialchars($comment['name']) ?></strong> le
                 <?= $comment['comment_date_fr'] ?>
                     <br />
-                    <?= nl2br(htmlspecialchars($comment['comment'])) ?>
+                    <?= nl2br(htmlspecialchars($comment['comment'])) ?><br>
             </p>
+            <a href="index.php?action=reportComment&amp;id=<?= $_GET['id']?>&amp;book_id=<?= $_GET['book_id']?>&amp;user_id=<?= $_GET['user_id']?>&amp;comment_id=<?= $comment['commentId']?>">Signaler le commentaire</a>
         </div>
 
         <?php
