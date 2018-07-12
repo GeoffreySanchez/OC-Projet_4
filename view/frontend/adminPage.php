@@ -33,8 +33,8 @@ $title = 'Administration'; ?>
                             <?= nl2br(htmlspecialchars($data['summaryMin'])) ?> ...
                         </p>
                         <div class="linkPosition">
-                            <a href="a">Modifier</a>
-                            <a href="b">Supprimer</a>
+                            <a class="modify" href="a">Modifier</a>
+                            <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>">Supprimer</a>
                         </div>
                     </div>
                     <?php

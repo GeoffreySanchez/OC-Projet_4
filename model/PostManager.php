@@ -28,4 +28,19 @@ class PostManager extends Manager
 
         return $post;
     }
+
+    public function deletePost($postId)
+    {
+        $db = $this->dbConnect();
+        $dPost = $db->prepare('
+        DELETE FROM posts
+        WHERE id = ?');
+        $dComments = $db->prepare('
+        DELETE FROM comments
+        WHERE post_id = ?');
+        $deleteThisPost = $dPost->execute(array($postId));
+        $deleteThisComments = $dComments->execute(array($postId));
+        return $deleteThisPost;
+        return $deleteThisComments;
+    }
 }

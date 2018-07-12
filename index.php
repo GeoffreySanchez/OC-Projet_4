@@ -47,20 +47,20 @@ try {
             }
         }
         elseif ($_GET['action'] == 'delete') {
-            if (isset($_GET['book_id']) && $_GET['book_id'] > 0) {
+            if (isset($_GET['bookId']) && $_GET['bookId'] > 0) {
                 if ($_SESSION['name'] == 'Invité') {
                     throw new Exception('Cette fonction est réservée aux administrateurs');
                 }
                 else {
-                  deleteBook($_GET['book_id']);
+                  deleteBook($_GET['bookId']);
                 }
             }
-            elseif (isset($_GET['post_id']) && $_GET['post_id'] > 0) {
+            elseif (isset($_GET['postId']) && $_GET['postId'] > 0) {
                 if ($_SESSION['name'] == 'Invité') {
                     throw new Exception('Cette fonction est réservée aux administrateurs');
                 }
                 else {
-                  deletePost($_GET['post_id']);
+                  deletePost($_GET['postId'], $_GET['book']);
                 }
             }
             elseif (isset($_GET['commentId']) && $_GET['commentId'] > 0) {

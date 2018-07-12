@@ -24,4 +24,18 @@ class bookManager extends Manager
 
         return $book;
     }
+
+    public function deleteBook($bookId) {
+        $db = $this->dbConnect();
+        $book = $db->prepare('
+        DELETE FROM books
+        WHERE id = ?');
+        $post = $db->prepare('
+        DELETE FROM posts
+        WHERE book_id = ?');
+        $deleteBook = $book->execute(array($bookId));
+        $deletePosts = $post->execute(array($bookId));
+        return $deletBook;
+        return $deletePosts;
+    }
 }

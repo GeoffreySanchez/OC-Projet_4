@@ -134,3 +134,15 @@ function reportComment ($commentId, $id, $book_id, $user_id) {
     $addReport = $commentManager->reportComment($commentId);
     header('Location: index.php?action=post&id='.$id.'&book_id='.$book_id.'&user_id='.$user_id.'');
 }
+
+function deleteBook($bookId) {
+    $bookManager = new bookManager();
+    $books = $bookManager->deleteBook($bookId);
+    header('Location: index.php?action=adminPage');
+}
+
+function deletePost($postId, $bookId) {
+    $postManager = new PostManager();
+    $post = $postManager->deletePost($postId);
+    header('Location: index.php?action=listPosts&id='.$bookId.'');
+}

@@ -271,7 +271,7 @@ label {
 #books {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 
 }
 
@@ -284,6 +284,7 @@ label {
     max-width: 300px;
     min-width: 299px;
     display: flex;
+    padding: 15px;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -319,6 +320,7 @@ em a:hover {
     max-width: 300px;
     min-width: 299px;
     height: 350px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -541,6 +543,13 @@ a i {
 
 .linkPosition a {
     padding-bottom: 5px;
+}
+
+.delete {
     color: red;
+}
+
+.modify {
+    color: rgb(103, 186, 191);
 }
 /*  */
