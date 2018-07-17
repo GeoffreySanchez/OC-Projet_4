@@ -13,7 +13,8 @@ class LoginManager extends Manager
         return $users;
     }
 
-    public function getUserId($name) {
+    public function getUserId($name)
+    {
         $db = $this->dbConnect();
         $userId = $db->prepare('
         SELECT id
@@ -23,7 +24,21 @@ class LoginManager extends Manager
         $id = $userId->fetch();
         return $id['id'];
     }
-    public function loginVerification($name, $password) {
+
+    public function getUserPermission($name)
+    {
+        $db = $this->dbConnect();
+        $userPermission = $db->prepare('
+        SELECT permission
+        FROM users
+        WHERE name = ?');
+        $userPermission->execute(array($name));
+        $permission = $userPermission->fetch();
+        return $permission['permission'];
+    }
+
+    public function loginVerification($name, $password)
+    {
         $db = $this->dbConnect();
         $verification = $db->prepare('
         SELECT COUNT(*) AS result

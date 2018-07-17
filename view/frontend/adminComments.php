@@ -31,7 +31,7 @@ $title = 'Administration des commentaires'; ?>
                                 <?= nl2br(htmlspecialchars($reportedComment['comment'])) ?>
                         </p>
                         <div class="linkPosition">
-                            <a href="">Modifier</a>
+                            <a class="modify" href="index.php?action=validComment&amp;commentId=<?= $reportedComment['id'] ?>">Accepter le commentaire</a>
                             <a href="index.php?action=delete&amp;commentId=<?= $reportedComment['id'] ?>">Supprimer</a>
                         </div>
                     </div>

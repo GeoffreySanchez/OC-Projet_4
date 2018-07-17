@@ -25,7 +25,8 @@ class bookManager extends Manager
         return $book;
     }
 
-    public function deleteBook($bookId) {
+    public function deleteBook($bookId)
+    {
         $db = $this->dbConnect();
         $book = $db->prepare('
         DELETE FROM books
@@ -37,5 +38,15 @@ class bookManager extends Manager
         $deletePosts = $post->execute(array($bookId));
         return $deletBook;
         return $deletePosts;
+    }
+
+    public function addNewBook($bookTitle, $bookSummary)
+    {
+        $db = $this->dbConnect();
+        $addBook = $db->prepare('
+        INSERT INTO books (title, summary)
+        VALUES (?, ?)');
+        $pushBook = $addBook->execute(array($bookTitle, $bookSummary));
+        return $pushBook;
     }
 }

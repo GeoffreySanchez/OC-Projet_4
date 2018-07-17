@@ -34,14 +34,34 @@ if (session_id() == '') {
     <?php
 while ($comment = $comments->fetch()) {
     ?>
-
+        <?php
+            if ($comment['report'] > 0) {
+        ?>
+        <div style="background-color : rgba(255,0,0,0.3);" id="<?= $comment['commentId']?>" class="comment">
+        <?php
+            } else {
+        ?>
         <div id="<?= $comment['commentId']?>" class="comment">
+        <?php
+            }
+         ?>
             <p><strong><?= htmlspecialchars($comment['name']) ?></strong> le
                 <?= $comment['comment_date_fr'] ?>
                     <br />
                     <?= nl2br(htmlspecialchars($comment['comment'])) ?><br>
             </p>
+            <?php
+            if ($comment['report'] > 0) {
+            ?>
+            <p>Ce commentaire a déjà été signalé</p>
+            <?php
+                } else {
+            ?>
             <a href="index.php?action=reportComment&amp;id=<?= $_GET['id']?>&amp;book_id=<?= $_GET['book_id']?>&amp;user_id=<?= $_GET['user_id']?>&amp;comment_id=<?= $comment['commentId']?>">Signaler le commentaire</a>
+            <?php
+                }
+            ?>
+
         </div>
 
         <?php

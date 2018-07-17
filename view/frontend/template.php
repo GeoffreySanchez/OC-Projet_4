@@ -5,6 +5,9 @@ if(!isset($_SESSION['name'])) {
 if (!isset($_SESSION['id'])) {
     $_SESSION['id'] = '3';
 }
+if (!isset($_SESSION['permission'])) {
+    $_SESSION['permission'] = '3';
+}
 ?>
 <!DOCTYPE html>
 <html>

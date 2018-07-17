@@ -16,7 +16,17 @@ $title = 'Administration'; ?>
         </div>
         <div id="infosAdmin">
             <div class='section'>
+               <?php
+                if ($_SESSION['permission'] == 1) {
+                ?>
                 <h3>Consultation / Création / édition / suppréssion</h3>
+                <?php
+                } else {
+                ?>
+                <h3>Consultation / Modération</h3>
+                <?php
+                }
+                ?>
             </div>
             <h4>Liste des romans :</h4>
             <div id="listeRomansAdmin">
@@ -29,21 +39,31 @@ $title = 'Administration'; ?>
                                 <?= htmlspecialchars($data['title']) ?>
                             </a>
                         </h3>
-                        <p>
-                            <?= nl2br(htmlspecialchars($data['summaryMin'])) ?> ...
+                        <p id="displayNone">
+                            <?= $data['summaryMin'] ?>
                         </p>
+                        <?php
+                            if ($_SESSION['permission'] == 1) {
+                        ?>
                         <div class="linkPosition">
                             <a class="modify" href="a">Modifier</a>
                             <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>">Supprimer</a>
                         </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                     <?php
                     }
                 $books->closeCursor();
+                if ($_SESSION['permission'] == 1) {
                 ?>
                         <div id='boutonAjout'>
-                            <a href="">Ajouter un roman<i id='ajoutRomanBouton' class="fas fa-plus-circle fa-4x"></i></a>
+                            <a href="index.php?action=newBook">Ajouter un roman<i id='ajoutRomanBouton' class="fas fa-plus-circle fa-4x"></i></a>
                         </div>
+                <?php
+                    }
+                ?>
             </div>
             <div id="reportedComments">
                 <h4>Commentaire(s) signalé(s) :</h4>

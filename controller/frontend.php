@@ -73,6 +73,7 @@ function logout() {
     $_SESSION['name'] = 'Invité';
     $_SESSION['password'] = '';
     $_SESSION['id'] = '3';
+    $_SESSION['permission'] = '3';
     header('Location: index.php');
 }
 
@@ -80,11 +81,13 @@ function loginVerification ($name, $password) {
     $loginManager = new LoginManager();
     $verification = $loginManager->loginVerification($name, $password);
     $recuperationId = $loginManager->getUserId($name);
+    $recuperationPermission = $loginManager->getUserPermission($name);
     if ($verification == true) {
                     session_start();
                     $_SESSION['name'] = $name;
                     $_SESSION['password'] = MD5($password);
                     $_SESSION['id'] = $recuperationId;
+                    $_SESSION['permission'] = $recuperationPermission;
                     header('Location: index.php?action=adminPage');
                 }
                 else {
@@ -93,7 +96,7 @@ function loginVerification ($name, $password) {
 }
 
 function adminPage() {
-    if ($_SESSION['name'] != 'Invité') {
+    if ($_SESSION['permission'] < 3) {
         $bookManager = new bookManager();
         $books = $bookManager->getBooks();
         $commentManager = new CommentManager();
@@ -106,7 +109,7 @@ function adminPage() {
 }
 
 function adminComments() {
-    if ($_SESSION['name'] != 'Invité') {
+    if ($_SESSION['permission'] < 3) {
         $bookManager = new bookManager();
         $books = $bookManager->getBooks();
         $commentManager = new CommentManager();
@@ -119,7 +122,7 @@ function adminComments() {
 }
 
 function deleteComment($id) {
-    if ($_SESSION['name'] != 'Invité') {
+    if ($_SESSION['permission'] < 3) {
         $commentManager = new CommentManager();
         $deleteComment = $commentManager->deleteComments($id);
         header('Location: index.php?action=adminComments');
@@ -129,10 +132,16 @@ function deleteComment($id) {
     }
 }
 
-function reportComment ($commentId, $id, $book_id, $user_id) {
+function reportComment($commentId, $id, $book_id, $user_id) {
     $commentManager = new CommentManager();
     $addReport = $commentManager->reportComment($commentId);
     header('Location: index.php?action=post&id='.$id.'&book_id='.$book_id.'&user_id='.$user_id.'');
+}
+
+function acceptReportedComment($id) {
+    $commentManager = new CommentManager();
+    $addReport = $commentManager->acceptComment($id);
+    header('Location: index.php?action=adminPage');
 }
 
 function deleteBook($bookId) {
@@ -145,4 +154,19 @@ function deletePost($postId, $bookId) {
     $postManager = new PostManager();
     $post = $postManager->deletePost($postId);
     header('Location: index.php?action=listPosts&id='.$bookId.'');
+}
+
+function newBookPage() {
+    require('view/frontend/newBook.php');
+}
+
+function addNewBook($bookTitle, $bookSummary) {
+    $bookManager = new bookManager();
+    $books = $bookManager->addNewBook($bookTitle, $bookSummary);
+    if ($pushBook === false) {
+        throw new Exception('Impossible d\'ajouter le nouveau roman');
+    }
+    else {
+        header('Location: index.php?action=adminPage');
+    }
 }

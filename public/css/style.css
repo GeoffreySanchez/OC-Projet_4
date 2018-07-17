@@ -550,6 +550,42 @@ a i {
 }
 
 .modify {
-    color: rgb(103, 186, 191);
+    color: rgb(103, 186, 191) !important;
+}
+
+#displayNone {
+    display: none;
+}
+
+.projet p {
+    margin-bottom: 0;
+}
+
+
+
+
+/* Ajout nouveau roman */
+
+#addBookForm label {
+    margin-bottom: 10px;
+}
+
+#bookTitle {
+    width: 100%;
+    height: 25px;
+}
+
+#alignNewBookBtn {
+    display: flex;
+    justify-content: center;
+}
+
+#createNewBook {
+    height: 30px;
+    margin-top: 20px;
 }
 /*  */
+/*  */
+/*  */
+/*  */
+

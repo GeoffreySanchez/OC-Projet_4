@@ -7,6 +7,7 @@ $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
 <?php ob_start(); ?>
 <div id="content">
     <h1>Bienvenue lecteurs !</h1>
+    <p> <?= $_SESSION['permission']?></p>
     <div id="presentation">
         <div id="photoAuteur">
             <img src="public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">

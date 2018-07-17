@@ -7,9 +7,6 @@ try {
         if ($_GET['action'] == 'listPosts') {
             listPosts();
         }
-        elseif ($_GET['action'] == 'books') {
-            listBooks();
-        }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 post();
@@ -17,6 +14,9 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        }
+        elseif ($_GET['action'] == 'books') {
+            listBooks();
         }
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -36,27 +36,35 @@ try {
                 reportComment($_GET['comment_id'], $_GET['id'], $_GET['book_id'], $_GET['user_id']);
             }
             else {
-                throw new Exception('prout');
+                throw new Exception('Ce commentaire n\'existe pas.');
             }
         }
-        elseif ($_GET['action'] == 'modify') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-            }
-            else {
-                throw new Exception('Aucun identifiant de billet envoyé');
-            }
+        elseif ($_GET['action'] == "newBook") {
+            if (session_id() == '') {
+                session_start();
+                }
+            if ($_SESSION['permission'] > 1) {
+                    throw new Exception('Cette fonction est réservée aux écrivains');
+                }
+                else {
+                    newBookPage();
+                }
         }
+        elseif ($_GET['action'] == "addNewBook") {
+            addNewBook($_POST['bookTitle'], $_POST['summary']);
+        }
+
         elseif ($_GET['action'] == 'delete') {
             if (isset($_GET['bookId']) && $_GET['bookId'] > 0) {
-                if ($_SESSION['name'] == 'Invité') {
-                    throw new Exception('Cette fonction est réservée aux administrateurs');
+                if ($_SESSION['permission'] > 1) {
+                    throw new Exception('Cette fonction est réservée aux écrivains');
                 }
                 else {
                   deleteBook($_GET['bookId']);
                 }
             }
             elseif (isset($_GET['postId']) && $_GET['postId'] > 0) {
-                if ($_SESSION['name'] == 'Invité') {
+                if ($_SESSION['permission'] > 1) {
                     throw new Exception('Cette fonction est réservée aux administrateurs');
                 }
                 else {
@@ -64,7 +72,7 @@ try {
                 }
             }
             elseif (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
-                if ($_SESSION['name'] == 'Invité') {
+                if ($_SESSION['permission'] > 2) {
                     throw new Exception('Cette fonction est réservée aux administrateurs');
                 }
                 else {
@@ -85,7 +93,7 @@ try {
             if (session_id() == '') {
                 session_start();
                 }
-            if ($_SESSION['name'] == 'Invité') {
+            if ($_SESSION['permission'] > 2) {
                throw new Exception('Cette page est réservée aux administrateurs');
             }
             else {
@@ -96,11 +104,22 @@ try {
             if (session_id() == '') {
                 session_start();
                 }
-            if ($_SESSION['name'] == 'Invité') {
+            if ($_SESSION['permission'] > 2) {
                throw new Exception('Cette page est réservée aux administrateurs');
             }
             else {
                 adminComments();
+            }
+        }
+        elseif ($_GET['action'] == 'validComment') {
+            if (session_id() == '') {
+                session_start();
+                }
+            if ($_SESSION['permission'] > 2) {
+               throw new Exception('Cette page est réservée aux administrateurs');
+            }
+            else {
+            acceptReportedComment($_GET['commentId']);
             }
         }
         elseif ($_GET['action'] == 'loginVerification') {

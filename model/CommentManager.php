@@ -7,7 +7,7 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('
-        SELECT comments.id AS commentId , comments.post_id, comments.user_id, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, users.id, users.name
+        SELECT comments.id AS commentId , comments.post_id, comments.user_id, comments.comment, DATE_FORMAT(comments.comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, comments.report, users.id, users.name
         FROM users
         INNER JOIN comments
         ON comments.user_id = users.id
@@ -54,17 +54,6 @@ class CommentManager extends Manager
         return $reportedComments;
     }
 
-    public function updateComment($comment, $id)
-    {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('
-        UPDATE `comments`
-        SET `comment`= "'.$comment.'" ,`comment_date`= NOW()
-        WHERE id = "'.$id.'" ');
-        $updateComment = $comments->execute(array($comment, $id));
-        return $updateComment;
-    }
-
     public function deleteComments($id)
     {
         $db = $this->dbConnect();
@@ -74,7 +63,19 @@ class CommentManager extends Manager
         return $deleteComments;
     }
 
-    public function reportComment($id) {
+    public function acceptComment($id)
+    {
+        $db = $this->dbConnect();
+        $comment = $db->prepare('
+        UPDATE comments
+        SET report = 0
+        WHERE id = ?');
+        $acceptReportedComment = $comment->execute(array($id));
+        return $acceptReportedComment;
+    }
+
+    public function reportComment($id)
+    {
         $db = $this->dbConnect();
         $comments = $db->prepare('
         UPDATE comments
