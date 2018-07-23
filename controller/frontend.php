@@ -6,14 +6,14 @@ require_once('model/BookManager.php');
 require_once('model/LoginManager.php');
 
 function listBooks() {
-    $bookManager = new bookManager();
+    $bookManager = new BookManager;
     $books = $bookManager->getBooks();
     require('view/frontend/listBooks.php');
 }
 
 function listPosts() {
     $postManager = new PostManager();
-    $bookManager = new bookManager();
+    $bookManager = new BookManager;
     $posts = $postManager->getPosts($_GET['id']);
     $book = $bookManager->getBook($_GET['id']);
     require('view/frontend/listPostsView.php');
@@ -57,7 +57,7 @@ function updateComment($comment, $id)
 }
 
 function home() {
-    $bookManager = new bookManager();
+    $bookManager = new BookManager;
     $books = $bookManager->getBooks();
     require('view/frontend/homePage.php');
 }
@@ -97,7 +97,7 @@ function loginVerification ($name, $password) {
 
 function adminPage() {
     if ($_SESSION['permission'] < 3) {
-        $bookManager = new bookManager();
+        $bookManager = new BookManager;
         $books = $bookManager->getBooks();
         $commentManager = new CommentManager();
         $reportedComments = $commentManager->getReportedComments();
@@ -110,7 +110,7 @@ function adminPage() {
 
 function adminComments() {
     if ($_SESSION['permission'] < 3) {
-        $bookManager = new bookManager();
+        $bookManager = new BookManager;
         $books = $bookManager->getBooks();
         $commentManager = new CommentManager();
         $reportedComments = $commentManager->getReportedComments();
@@ -145,7 +145,7 @@ function acceptReportedComment($id) {
 }
 
 function deleteBook($bookId) {
-    $bookManager = new bookManager();
+    $bookManager = new BookManager;
     $books = $bookManager->deleteBook($bookId);
     header('Location: index.php?action=adminPage');
 }
@@ -161,7 +161,7 @@ function newBookPage() {
 }
 
 function addNewBook($bookTitle, $bookSummary) {
-    $bookManager = new bookManager();
+    $bookManager = new BookManager;
     $books = $bookManager->addNewBook($bookTitle, $bookSummary);
     if ($pushBook === false) {
         throw new Exception('Impossible d\'ajouter le nouveau roman');
@@ -183,5 +183,39 @@ function addNewPost($bookId, $postTitle, $postContent) {
     }
     else {
         header('Location: index.php?action=adminPage');
+    }
+}
+
+function modifyBookPage($bookId) {
+    $bookManager = new BookManager;
+    $returnBook = $bookManager->returnBookToModify($bookId);
+    require('view/frontend/modifyContent.php');
+}
+
+function modifyBook($bookTitle, $bookSummary, $bookId) {
+    $bookManager = new BookManager;
+    $returnBook = $bookManager->modifyBook($bookTitle, $bookSummary, $bookId);
+    if ($modifyBook === false) {
+        throw new exception('Impossible de modifier ce roman');
+    }
+    else {
+       header('Location: index.php?action=adminPage');
+    }
+}
+
+function modifyPostPage($postId) {
+    $postManager = new PostManager();
+    $returnPost = $postManager->returnPostToModify($postId);
+    require('view/frontend/modifyContent.php');
+}
+
+function modifyPost($postTitle, $postContent, $postId,$postBookId) {
+    $postManager = new PostManager();
+    $returnPost = $postManager->modifyPost($postTitle, $postContent, $postId);
+    if ($modifyPost === false) {
+        throw new exception('Impossible de modifier ce roman');
+    }
+    else {
+       header('Location: index.php?action=listPosts&id='.$postBookId.'');
     }
 }

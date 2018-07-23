@@ -11,7 +11,7 @@ $title = 'Mes romans'; ?>
     <div id="books">
         <?php
 while ($data = $books->fetch())
-    if (strlen($data['summary']) > 100) {
+    if (strlen($data['summary']) > 400) {
 ?>
             <div id="book">
                 <div id="book_title">
@@ -22,7 +22,9 @@ while ($data = $books->fetch())
                     <br />
                 </div>
                 <div id="listeChapitre" class="animated shake">
-                    <em><a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">Accès aux chapitres</a></em>
+                    <em>
+                        <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">Accès aux chapitres</a>
+                    </em>
                 </div>
             </div>
             <?php
@@ -38,6 +40,17 @@ while ($data = $books->fetch())
                 <div>
                     <?= $data['summary'] ?>
                     <br />
+                    <?php
+                        if ($_SESSION['permission'] == 1) {
+                    ?>
+                    <div id="listeChapitre" class="animated shake">
+                        <em>
+                            <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">Accès aux chapitres</a>
+                        </em>
+                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
             <?php

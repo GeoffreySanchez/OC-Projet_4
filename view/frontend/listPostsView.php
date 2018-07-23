@@ -37,7 +37,7 @@ $title = htmlspecialchars($book['title']); ?>
                         if ($_SESSION['permission'] == 1) {
                     ?>
                     <br>
-                    <a href="">Modifier</a> /
+                    <a href="index.php?action=modifyPostPage&amp;postId=<?= $data['id'] ?>&amp;bookId=<?= $_GET['id'] ?>">Modifier</a> /
                     <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book=<?= $_GET['id'] ?>">Supprimer</a>
                     <?php
                         }
@@ -63,7 +63,7 @@ $title = htmlspecialchars($book['title']); ?>
                         if ($_SESSION['permission'] == 1) {
                     ?>
                     <br>
-                    <a href="">Modifier</a> /
+                    <a href="index.php?action=modifyPostPage&amp;postId=<?= $data['id'] ?>&amp;bookId=<?= $_GET['id'] ?>">Modifier</a> /
                     <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book=<?= $_GET['id'] ?>">Supprimer</a>
                     <?php
                         }

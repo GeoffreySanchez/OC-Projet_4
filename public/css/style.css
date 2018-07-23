@@ -289,7 +289,6 @@ label {
 
 #book {
     max-width: 300px;
-    min-width: 299px;
     display: flex;
     padding: 15px;
     flex-direction: column;
@@ -325,7 +324,6 @@ em a:hover {
 
 #workInProgress {
     max-width: 300px;
-    min-width: 299px;
     height: 350px;
     padding: 15px;
     display: flex;

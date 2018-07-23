@@ -53,4 +53,27 @@ class PostManager extends Manager
         $pushBook = $addPost->execute(array($bookId, $postTitle, $postContent));
         return $pushPost;
     }
+
+    public function returnPostToModify($postId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('
+        SELECT id, title, content
+        FROM posts
+        WHERE id = ?');
+        $req->execute(array($postId));
+        $modifyPost = $req->fetch();
+        return $modifyPost;
+    }
+
+    public function modifypost($postTitle, $postContent, $postId)
+    {
+        $db = $this->dbConnect();
+        $bookToModify = $db->prepare('
+        UPDATE posts
+        SET title = ?, content = ?
+        WHERE id = ?');
+        $modifyPost = $bookToModify->execute(array($postTitle, $postContent, $postId));
+        return $modifyPost;
+    }
 }

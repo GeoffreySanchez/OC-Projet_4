@@ -45,6 +45,20 @@ try {
                     newBookPage();
                 }
         }
+        elseif ($_GET['action'] == "modifyBookPage") {
+            if (session_id() == '') {
+                session_start();
+                }
+            if ($_SESSION['permission'] > 1) {
+                    throw new Exception('Cette fonction est réservée aux écrivains');
+                }
+                else {
+                    modifyBookPage($_GET['bookId']);
+                }
+        }
+        elseif ($_GET['action'] == "modifyBook") {
+            modifyBook($_POST['contentTitle'], $_POST['contentToAdd'], $_GET['bookId']);
+        }
         elseif ($_GET['action'] == "newPost") {
             if (session_id() == '') {
                 session_start();
@@ -55,6 +69,20 @@ try {
                 else {
                     newPostPage();
                 }
+        }
+        elseif ($_GET['action'] == "modifyPostPage") {
+            if (session_id() == '') {
+                session_start();
+                }
+            if ($_SESSION['permission'] > 1) {
+                    throw new Exception('Cette fonction est réservée aux écrivains');
+                }
+                else {
+                    modifyPostPage($_GET['postId']);
+                }
+        }
+        elseif ($_GET['action'] == "modifyPost") {
+            modifyPost($_POST['contentTitle'], $_POST['contentToAdd'], $_GET['postId'], $_GET['bookId']);
         }
         elseif ($_GET['action'] == "addNewBook") {
             addNewBook($_POST['contentTitle'], $_POST['contentToAdd']);

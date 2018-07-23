@@ -46,7 +46,7 @@ $title = 'Administration'; ?>
                             if ($_SESSION['permission'] == 1) {
                         ?>
                         <div class="linkPosition">
-                            <a class="modify" href="a">Modifier</a>
+                            <a class="modify" href="index.php?action=modifyBookPage&amp;bookId=<?= $data['id'] ?>">Modifier</a>
                             <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>">Supprimer</a>
                         </div>
                         <?php

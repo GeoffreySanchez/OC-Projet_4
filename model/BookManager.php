@@ -1,7 +1,7 @@
 <?php
 require_once("model/Manager.php");
 
-class bookManager extends Manager
+class BookManager extends Manager
 {
     public function getBooks()
     {
@@ -21,7 +21,6 @@ class bookManager extends Manager
         WHERE id = ?');
         $req->execute(array($bookId));
         $book = $req->fetch();
-
         return $book;
     }
 
@@ -49,4 +48,28 @@ class bookManager extends Manager
         $pushBook = $addBook->execute(array($bookTitle, $bookSummary));
         return $pushBook;
     }
+
+    public function returnBookToModify($bookId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('
+        SELECT id, title, summary
+        FROM books
+        WHERE id = ?');
+        $req->execute(array($bookId));
+        $modifyBook = $req->fetch();
+        return $modifyBook;
+    }
+
+    public function modifyBook($bookTitle, $bookSummary, $bookId)
+    {
+        $db = $this->dbConnect();
+        $bookToModify = $db->prepare('
+        UPDATE books
+        SET title = ?, summary = ?
+        WHERE id = ?');
+        $modifyBook = $bookToModify->execute(array($bookTitle, $bookSummary, $bookId));
+        return $modifyBook;
+    }
+
 }
