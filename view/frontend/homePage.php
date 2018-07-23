@@ -7,11 +7,10 @@ $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
 <?php ob_start(); ?>
 <div id="content">
     <h1>Bienvenue lecteurs !</h1>
-    <p> <?= $_SESSION['permission']?></p>
     <div id="presentation">
         <div id="photoAuteur">
             <img src="public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">
-        </div>
+       s </div>
         <div id="texteAuteur">
             <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.</p>
             <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.</p>
@@ -33,7 +32,7 @@ $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
                         </a>
                     </h3>
                     <p>
-                        <?= nl2br(htmlspecialchars($data['summaryMin'])) ?>...</p>
+                        <?= $data['summaryMin'] ?>...</p>
                 </div>
                 <?php
                     }

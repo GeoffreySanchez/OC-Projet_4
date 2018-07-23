@@ -50,7 +50,6 @@ if (!isset($_SESSION['permission'])) {
             ?>
         </nav>
     </header>
-    <p id="haut"></p>
     <?= $content ?>
         <footer>
             <div id="contact">

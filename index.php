@@ -20,12 +20,7 @@ try {
         }
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_GET['book_id'], $_POST['comment'], $_GET['user_id']);
-                }
-                else {
-                    throw new Exception('Tous les champs ne sont pas remplis !');
-                }
+                addComment($_GET['id'], $_GET['book_id'], $_POST['comment'], $_GET['user_id']);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
@@ -50,10 +45,23 @@ try {
                     newBookPage();
                 }
         }
-        elseif ($_GET['action'] == "addNewBook") {
-            addNewBook($_POST['bookTitle'], $_POST['summary']);
+        elseif ($_GET['action'] == "newPost") {
+            if (session_id() == '') {
+                session_start();
+                }
+            if ($_SESSION['permission'] > 1) {
+                    throw new Exception('Cette fonction est réservée aux écrivains');
+                }
+                else {
+                    newPostPage();
+                }
         }
-
+        elseif ($_GET['action'] == "addNewBook") {
+            addNewBook($_POST['contentTitle'], $_POST['contentToAdd']);
+        }
+        elseif ($_GET['action'] == "addNewPost") {
+            addNewPost($_GET['bookId'], $_POST['contentTitle'], $_POST['contentToAdd']);
+        }
         elseif ($_GET['action'] == 'delete') {
             if (isset($_GET['bookId']) && $_GET['bookId'] > 0) {
                 if ($_SESSION['permission'] > 1) {

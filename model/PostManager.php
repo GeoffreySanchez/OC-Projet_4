@@ -10,7 +10,7 @@ class PostManager extends Manager
         SELECT id, title, content, SUBSTRING(content, 1, 2000) AS contentMin, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr
         FROM posts
         WHERE book_id = ?
-        ORDER BY creation_date ASC LIMIT 0, 5');
+        ORDER BY creation_date ASC');
         $req->execute(array($postsId));
 
         return $req;
@@ -42,5 +42,15 @@ class PostManager extends Manager
         $deleteThisComments = $dComments->execute(array($postId));
         return $deleteThisPost;
         return $deleteThisComments;
+    }
+
+    public function addNewPost($bookId, $postTitle, $postContent)
+    {
+        $db = $this->dbConnect();
+        $addPost = $db->prepare('
+        INSERT INTO posts (book_id, title, content, creation_date)
+        VALUES (?, ?, ?, NOW())');
+        $pushBook = $addPost->execute(array($bookId, $postTitle, $postContent));
+        return $pushPost;
     }
 }

@@ -11,7 +11,8 @@
  }
 /* Reset */
 
-body {
+body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: white;
@@ -102,6 +103,7 @@ li a:hover {
 }
 
 header {
+    z-index: 2;
     position: fixed;
     top: 0;
     width: 100%;
@@ -114,6 +116,7 @@ header {
 /* Contenu */
 
 #content {
+    position: relative;
     margin-top: 75px;
     margin-left: 10%;
     margin-right: 10%;
@@ -122,9 +125,9 @@ header {
     padding-left: 10px;
     padding-right: 10px;
     background-color: rgb(220, 223, 229);
+    z-index: 1;
+    min-height: 100%;
 }
-
-
 
 
 
@@ -132,6 +135,10 @@ header {
 
 footer {
     background-color: rgb(103, 186, 191);
+    position: sticky;
+    bottom: -145px;
+    width: 100%;
+    z-index: 2;
 }
 
 footer p,
@@ -227,7 +234,6 @@ alt {
 .projet {
     text-align: center;
     max-width: 310px;
-    min-height: 175px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -272,6 +278,7 @@ label {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 100px;
 
 }
 
@@ -335,6 +342,22 @@ em a:hover {
 
 /* Listes chapitres */
 
+.contenuChapitre p {
+    margin-bottom: 0 !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    background-color: white !important;
+    margin-top: 0px !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+}
+
+.contenuChapitre {
+    padding-top: 10px;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
 .chapter p {
     background-color: white;
     margin-top: 0px;
@@ -359,7 +382,13 @@ h3 em {
     font-size: 0.75em;
 }
 
-.chapter p em {
+.readMoreAndComment {
+    display: flex;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.readMoreAndCommentMin {
     display: flex;
     padding-top: 10px;
 }
@@ -397,6 +426,32 @@ h3 em {
     flex-direction: column-reverse;
 }
 
+#addPost {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    font-size: 1.3em;
+}
+
+#addPost a, #addFirstPost a {
+    color: white;
+    background-color: rgb(103, 186, 191);
+    padding: 5px;
+}
+
+#addFirstPost {
+    display: flex;
+    margin-top: 150px;
+    margin-bottom: 20px;
+    justify-content: center;
+    font-size: 1.3em;
+}
+
+#workInProgressImg {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
 
 
 
@@ -411,6 +466,8 @@ h3 em {
     width: 200px;
     text-align: center;
     background-color: rgb(103, 186, 191);
+    padding: 5px;
+    margin-bottom: 5px;
 }
 
 #commentWriter {
@@ -449,6 +506,7 @@ h3 em {
 
 #presentationAdmin {
     text-align: center;
+    margin-top: 100px;
 }
 
 #formulaireConnexion {
@@ -557,30 +615,33 @@ a i {
     display: none;
 }
 
-.projet p {
-    margin-bottom: 0;
+.section h4 {
+    margin-top: 50px;
 }
 
+#reportedComments {
+    margin-top: 150px;
+}
 
 
 
 /* Ajout nouveau roman */
 
-#addBookForm label {
+#addContentForm label {
     margin-bottom: 10px;
 }
 
-#bookTitle {
+#contentTitle {
     width: 100%;
     height: 25px;
 }
 
-#alignNewBookBtn {
+#alignNewContentBtn {
     display: flex;
     justify-content: center;
 }
 
-#createNewBook {
+#createNewContent {
     height: 30px;
     margin-top: 20px;
 }
@@ -588,4 +649,5 @@ a i {
 /*  */
 /*  */
 /*  */
+
 

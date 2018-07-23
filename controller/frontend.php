@@ -157,7 +157,7 @@ function deletePost($postId, $bookId) {
 }
 
 function newBookPage() {
-    require('view/frontend/newBook.php');
+    require('view/frontend/newContent.php');
 }
 
 function addNewBook($bookTitle, $bookSummary) {
@@ -165,6 +165,21 @@ function addNewBook($bookTitle, $bookSummary) {
     $books = $bookManager->addNewBook($bookTitle, $bookSummary);
     if ($pushBook === false) {
         throw new Exception('Impossible d\'ajouter le nouveau roman');
+    }
+    else {
+        header('Location: index.php?action=adminPage');
+    }
+}
+
+function newPostPage() {
+    require('view/frontend/newContent.php');
+}
+
+function addNewPost($bookId, $postTitle, $postContent) {
+    $postManager = new PostManager();
+    $addPost = $postManager->addNewPost($bookId, $postTitle, $postContent);
+    if ($pushPost === false) {
+        throw new Exception('Impossible d\'ajouter le nouveau chapitre');
     }
     else {
         header('Location: index.php?action=adminPage');

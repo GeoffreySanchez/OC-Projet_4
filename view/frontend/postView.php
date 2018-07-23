@@ -16,9 +16,9 @@ if (session_id() == '') {
                 <em>paru le <?= $post['creation_date_fr'] ?></em>
         </h3>
 
-        <p>
-            <?= nl2br(htmlspecialchars($post['content'])) ?>
-        </p>
+        <div class="contenuChapitre">
+            <?= $post['content'] ?>
+        </div>
     </div>
 
     <h2>Commentaires</h2>

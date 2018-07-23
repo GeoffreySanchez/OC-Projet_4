@@ -7,7 +7,7 @@ $title = 'Mes romans'; ?>
 <?php ob_start(); ?>
 
 
-<div id="content">
+<div id="content" class="bookList">
     <div id="books">
         <?php
 while ($data = $books->fetch())

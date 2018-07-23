@@ -21,8 +21,8 @@ $title = 'Identifiez vous'; ?>
         <hr />
         <div id="formulaireConnexion">
             <form method="post" action="index.php?action=loginVerification">
-                <label for="idField">Identifiant</label><input type="text" id="idField" name="idField">
-                <label for="pwField">Mot de passe</label><input type="password" id="pwField" name="pwField">
+                <label for="idField">Identifiant</label><input type="text" id="idField" name="idField" required>
+                <label for="pwField">Mot de passe</label><input type="password" id="pwField" name="pwField" required>
                 <label for="envoyerConnexion" id="envoyerConnexionAlign">
             <input id="envoyerConnexion" type="submit"></label>
             </form>
