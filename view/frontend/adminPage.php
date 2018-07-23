@@ -40,7 +40,7 @@ $title = 'Administration'; ?>
                             </a>
                         </h3>
                         <p id="displayNone">
-                            <?= $data['summaryMin'] ?>
+                            <?= $data['summary'] ?>
                         </p>
                         <?php
                             if ($_SESSION['permission'] == 1) {

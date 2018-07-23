@@ -7,7 +7,7 @@ class BookManager extends Manager
     {
         $db = $this->dbConnect();
         $books = $db->query('
-        SELECT id, title, summary, SUBSTRING(summary,1,100) AS summaryMin
+        SELECT id, title, summary
         FROM books');
         return $books;
     }
