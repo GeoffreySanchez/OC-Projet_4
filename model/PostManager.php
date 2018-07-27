@@ -3,6 +3,7 @@ require_once("model/Manager.php");
 
 class PostManager extends Manager
 {
+    // Récupère tout les chapitre suivant l'id d'un roman //
     public function getPosts($postsId)
     {
         $db = $this->dbConnect();
@@ -12,10 +13,10 @@ class PostManager extends Manager
         WHERE book_id = ?
         ORDER BY creation_date ASC');
         $req->execute(array($postsId));
-
         return $req;
     }
 
+    // Récupère un chapitre grâce a son id //
     public function getPost($postId)
     {
         $db = $this->dbConnect();
@@ -25,10 +26,10 @@ class PostManager extends Manager
         WHERE id = ?');
         $req->execute(array($postId));
         $post = $req->fetch();
-
         return $post;
     }
 
+    // Permet de supprimer un chapitre grâce a son id //
     public function deletePost($postId)
     {
         $db = $this->dbConnect();
@@ -44,6 +45,7 @@ class PostManager extends Manager
         return $deleteThisComments;
     }
 
+    // Ajoute un nouveau chapitre dans la base de donnée //
     public function addNewPost($bookId, $postTitle, $postContent)
     {
         $db = $this->dbConnect();
@@ -54,18 +56,7 @@ class PostManager extends Manager
         return $pushPost;
     }
 
-    public function returnPostToModify($postId)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('
-        SELECT id, title, content
-        FROM posts
-        WHERE id = ?');
-        $req->execute(array($postId));
-        $modifyPost = $req->fetch();
-        return $modifyPost;
-    }
-
+    // Modifie un chapitre grâce a son id //
     public function modifypost($postTitle, $postContent, $postId)
     {
         $db = $this->dbConnect();

@@ -3,6 +3,7 @@ require_once("model/Manager.php");
 
 class BookManager extends Manager
 {
+    // Récupère l'intégralité des roman dans la base de donnée //
     public function getBooks()
     {
         $db = $this->dbConnect();
@@ -12,11 +13,12 @@ class BookManager extends Manager
         return $books;
     }
 
+    // Récupère un roman suivant son id //
     public function getBook($bookId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('
-        SELECT id, title
+        SELECT id, title, summary
         FROM books
         WHERE id = ?');
         $req->execute(array($bookId));
@@ -24,21 +26,24 @@ class BookManager extends Manager
         return $book;
     }
 
+    // Supprime un roman ainsi que les chapitres associés suivant son id //
     public function deleteBook($bookId)
     {
         $db = $this->dbConnect();
         $book = $db->prepare('
         DELETE FROM books
         WHERE id = ?');
-        $post = $db->prepare('
+        $posts = $db->prepare('
         DELETE FROM posts
         WHERE book_id = ?');
         $deleteBook = $book->execute(array($bookId));
-        $deletePosts = $post->execute(array($bookId));
-        return $deletBook;
+        $deletePosts = $posts->execute(array($bookId));
+        return $deleteBook;
         return $deletePosts;
+        return $deleteComments;
     }
 
+    // Ajoute un nouveau roman //
     public function addNewBook($bookTitle, $bookSummary)
     {
         $db = $this->dbConnect();
@@ -49,18 +54,7 @@ class BookManager extends Manager
         return $pushBook;
     }
 
-    public function returnBookToModify($bookId)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('
-        SELECT id, title, summary
-        FROM books
-        WHERE id = ?');
-        $req->execute(array($bookId));
-        $modifyBook = $req->fetch();
-        return $modifyBook;
-    }
-
+    // Modifie les données d'un roman avec son id //
     public function modifyBook($bookTitle, $bookSummary, $bookId)
     {
         $db = $this->dbConnect();

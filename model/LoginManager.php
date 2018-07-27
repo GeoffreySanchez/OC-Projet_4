@@ -3,7 +3,7 @@ require_once("model/Manager.php");
 
 class LoginManager extends Manager
 {
-
+    // Récupère toutes les données des utilisateurs de la base de donnée //
     public function getUsers()
     {
         $db = $this->dbConnect();
@@ -13,6 +13,7 @@ class LoginManager extends Manager
         return $users;
     }
 
+    // Récupère l'id suivant le nom d'un utilisateur //
     public function getUserId($name)
     {
         $db = $this->dbConnect();
@@ -25,6 +26,7 @@ class LoginManager extends Manager
         return $id['id'];
     }
 
+    // Récupère les permissions d'un utilisateur grâce a son nom //
     public function getUserPermission($name)
     {
         $db = $this->dbConnect();
@@ -37,6 +39,7 @@ class LoginManager extends Manager
         return $permission['permission'];
     }
 
+    // Vérifie sur un utilisateur existe dans la base de donnée suivant un nom et un mot de passe //
     public function loginVerification($name, $password)
     {
         $db = $this->dbConnect();
@@ -48,7 +51,7 @@ class LoginManager extends Manager
         $dataVerification = $verification->fetch();
         if($dataVerification['result'] == 1) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }

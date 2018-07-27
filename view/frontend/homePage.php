@@ -2,9 +2,9 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
-
-<?php ob_start(); ?>
+$title = 'Bienvenue sur le blog de Jean Forteroche';
+ob_start();
+?>
 <div id="content">
     <h1>Bienvenue lecteurs !</h1>
     <div id="presentation">
@@ -17,27 +17,26 @@ $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
             <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant. Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant."</p>
         </div>
     </div>
-    <div id="projets">
+    <div>
         <div id="projetEnCours">
             <h2>Les projets en cours :</h2>
             <div id="projets">
                 <?php
                 while ($data = $books->fetch())
-                    if(strlen($data['title']) > 25){
+                    if(strlen($data['summary']) > 400) {
                 ?>
                 <div class="projet">
                     <h3 class="animated shake">
-                        <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">
-                            <?= htmlspecialchars($data['title']) ?>
-                        </a>
+                        <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a>
                     </h3>
-                    <p><?= $data['summary'] ?></p>
+                    <div>
+                        <?= $data['summary'] ?>
+                    </div>
                 </div>
                 <?php
-                    }
+                }
                 $books->closeCursor();
                 ?>
-
             </div>
         </div>
         <div id="projetAVenir">
@@ -58,6 +57,7 @@ $title = 'Bienvenue sur le blog de Jean Forteroche'; ?>
         </div>
     </div>
 </div>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
+<?php
+$content = ob_get_clean();
+require('template.php');
+?>

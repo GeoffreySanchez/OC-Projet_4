@@ -3,6 +3,8 @@ require_once("model/Manager.php");
 
 class CommentManager extends Manager
 {
+
+    // Récupère tout les commentaires suivant l'id du chapitre //
     public function getComments($postId)
     {
         $db = $this->dbConnect();
@@ -17,6 +19,20 @@ class CommentManager extends Manager
         return $comments;
     }
 
+    // Récupère un commentaire suivant son id //
+    public function getComment($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('
+        SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr
+        FROM comments
+        WHERE id = ?');
+        $req->execute(array($id));
+        $comment = $req->fetch();
+        return $comment;
+    }
+
+    // Ajoute un commentaire dans la base de donnée //
     public function postComment($postId, $comment, $userId)
     {
         $db = $this->dbConnect();
@@ -27,19 +43,19 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
-    public function getComment($id)
+    // Change l'état d'un commentaire à "signalé" //
+    public function reportComment($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('
-        SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr
-        FROM comments
+        $comments = $db->prepare('
+        UPDATE comments
+        SET report = 1
         WHERE id = ?');
-        $req->execute(array($id));
-        $comment = $req->fetch();
-
-        return $comment;
+        $addReport = $comments->execute(array($id));
+        return $addReport;
     }
 
+    // Récupère les commentaires qui ont été signalés //
     public function getReportedComments()
     {
         $db = $this->dbConnect();
@@ -54,6 +70,7 @@ class CommentManager extends Manager
         return $reportedComments;
     }
 
+    // Supprime le commentaire grâce à son id //
     public function deleteComments($id)
     {
         $db = $this->dbConnect();
@@ -63,6 +80,7 @@ class CommentManager extends Manager
         return $deleteComments;
     }
 
+    // Accepte un commentaire signalé //
     public function acceptComment($id)
     {
         $db = $this->dbConnect();
@@ -72,16 +90,5 @@ class CommentManager extends Manager
         WHERE id = ?');
         $acceptReportedComment = $comment->execute(array($id));
         return $acceptReportedComment;
-    }
-
-    public function reportComment($id)
-    {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('
-        UPDATE comments
-        SET report = 1
-        WHERE id = ?');
-        $addReport = $comments->execute(array($id));
-        return $addReport;
     }
 }
