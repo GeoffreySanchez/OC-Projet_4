@@ -12,7 +12,7 @@ ob_start();
             if (strlen($data['summary']) > 400) {
         ?>
         <div id="book">
-            <div id="book_title">
+            <div class="book_title">
                 <h3><?= htmlspecialchars($data['title']) ?></h3>
             </div>
             <div>
@@ -29,7 +29,7 @@ ob_start();
         } else {
         ?>
         <div id="workInProgress">
-            <div id="book_title">
+            <div class="book_title">
                 <h3>
                     <?= htmlspecialchars($data['title']) ?>
                 </h3>

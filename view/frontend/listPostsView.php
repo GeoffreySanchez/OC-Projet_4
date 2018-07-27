@@ -89,7 +89,7 @@ ob_start();
             <label id="loupe" class="checkBox" for="checkBox"></label>
             <div id="searchBar">
                 <form method="post" action="redirectionChapitre.php">
-                    <label for="recherche">choississez votre chapitre</label>
+                    <label for="deplacement">choississez votre chapitre</label>
                     <select name="ancre" id="deplacement">
                     <?php
                     $i = 0;

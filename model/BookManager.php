@@ -33,14 +33,8 @@ class BookManager extends Manager
         $book = $db->prepare('
         DELETE FROM books
         WHERE id = ?');
-        $posts = $db->prepare('
-        DELETE FROM posts
-        WHERE book_id = ?');
         $deleteBook = $book->execute(array($bookId));
-        $deletePosts = $posts->execute(array($bookId));
         return $deleteBook;
-        return $deletePosts;
-        return $deleteComments;
     }
 
     // Ajoute un nouveau roman //

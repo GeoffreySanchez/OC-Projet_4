@@ -73,7 +73,7 @@ require('template.php');
 ?>
 <script>
     tinymce.init({
-        elector: 'textarea',
+        selector: 'textarea',
         height: 500,
         theme: 'modern',
         plugins: 'lists advlist image imagetools'

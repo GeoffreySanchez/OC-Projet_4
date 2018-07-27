@@ -45,10 +45,10 @@ ob_start();
             <i>Fin des votes le 1 septembre 2018</i>
             <form action="vote.php" method="post">
                 <div id="choixProjet">
-                    <label for="1"><input type="radio" name="roman" value="1" />Billet simple pour l'Amazonie</label>
-                    <label for="2"><input type="radio" name="roman" value="2" />Billet simple pour l'Himalaya</label>
-                    <label for="3"><input type="radio" name="roman" value="3" />Billet simple pour la Siberie </label>
-                    <label for="4"><input type="radio" name="roman" value="4" />Billet simple pour le Botswana</label>
+                    <label for="1"><input type="radio" name="roman" value="1" id="1"/>Billet simple pour l'Amazonie</label>
+                    <label for="2"><input type="radio" name="roman" value="2" id="2"/>Billet simple pour l'Himalaya</label>
+                    <label for="3"><input type="radio" name="roman" value="3" id="3"/>Billet simple pour la Siberie </label>
+                    <label for="4"><input type="radio" name="roman" value="4" id="4"/>Billet simple pour le Botswana</label>
                 </div>
                 <div id="validationFormulaire">
                     <input type="submit" value="Valider">

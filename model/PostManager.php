@@ -36,13 +36,8 @@ class PostManager extends Manager
         $dPost = $db->prepare('
         DELETE FROM posts
         WHERE id = ?');
-        $dComments = $db->prepare('
-        DELETE FROM comments
-        WHERE post_id = ?');
         $deleteThisPost = $dPost->execute(array($postId));
-        $deleteThisComments = $dComments->execute(array($postId));
         return $deleteThisPost;
-        return $deleteThisComments;
     }
 
     // Ajoute un nouveau chapitre dans la base de donnée //
