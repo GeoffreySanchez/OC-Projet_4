@@ -9,24 +9,27 @@
   font-weight: normal;
   font-style: normal;
  }
-/* Reset */
+
+
+  /*****************************/
+ /*-Reset + background+ fonts-*/
+/*****************************/
 
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
     background-color: rgb(220, 223, 229);
+    font-family: 'Cardo', serif;
 }
 
 
-
-
-
-/* Général */
+  /***********/
+ /*-Général-*/
+/***********/
 
 h1 {
     text-align: center;
-
 }
 
 h2 {
@@ -38,6 +41,10 @@ h3 {
     color: white;
     margin-bottom: 0;
     padding: 5px;
+}
+
+h3 em {
+    font-size: 0.75em;
 }
 
 h4 {
@@ -58,32 +65,11 @@ a {
     text-decoration: underline;
 }
 
-
-
-
-
-/* Menu de navigation */
-
-nav {
-    display: flex;
-    margin-top: 15px;
-}
-
 ul {
     align-content: center;
     padding: 0;
     display: flex;
     flex-direction: row;
-}
-
-#public {
-    left: 3%;
-    position: relative;
-}
-
-#admin {
-    right: 3%;
-    position: absolute;
 }
 
 li {
@@ -102,6 +88,41 @@ li a:hover {
     color: black;
 }
 
+input {
+    margin-bottom: 10px;
+}
+
+label {
+    display: flex;
+}
+
+em a {
+    color: rgb(131, 144, 152);
+    text-decoration: underline;
+}
+
+em a:hover {
+    text-decoration: none;
+    border: 1px solid black;
+    color: white;
+    background-color: rgb(131, 144, 152);
+    padding: 3px;
+}
+
+hr {
+    margin-top: 50px;
+    max-width: 400px;
+}
+
+a i {
+    padding-top: 5px;
+}
+
+
+  /**********************/
+ /*-Menu de navigation-*/
+/**********************/
+
 header {
     z-index: 2;
     position: fixed;
@@ -111,9 +132,25 @@ header {
     background-color: rgb(131,144,152);
 }
 
+nav {
+    display: flex;
+    margin-top: 15px;
+}
+
+#public {
+    left: 3%;
+    position: relative;
+}
+
+#admin {
+    right: 3%;
+    position: absolute;
+}
 
 
-/* Contenu */
+  /***********/
+ /*-Contenu-*/
+/***********/
 
 #content {
     position: relative;
@@ -130,26 +167,15 @@ header {
 }
 
 
-
-/* footer */
+  /**********/
+ /*-footer-*/
+/**********/
 
 footer {
     background-color: rgb(131,144,152);
-    position: sticky;
     bottom: -145px;
     width: 100%;
     z-index: 2;
-}
-
-footer p,
-footer a {
-    color: white;
-}
-
-#contact p {
-    margin-top: 0;
-    padding-top: 15px;
-    padding-left: 5px;
 }
 
 #contact {
@@ -158,38 +184,6 @@ footer a {
     padding-bottom: 10px;
     flex-direction: column;
     margin-left: 3%;
-}
-
-#contact h4 {
-    color: white;
-    text-decoration: underline;
-}
-
-#contactMail,
-contactCourrier {
-    display: flex;
-}
-
-#contactMail {
-    margin-bottom: 15px;
-}
-
-alt {
-    color: white;
-}
-
-#infosContact {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-#contactCourrier {
-    display: flex;
-}
-
-#contactCourrier img {
-    max-height: 51px;
 }
 
 #contactTitle {
@@ -204,12 +198,65 @@ alt {
     padding-right: 10px;
 }
 
-/* Home page */
+#infosContact {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 0 !important;
+}
+
+#contactMail,
+contactCourrier {
+    display: flex;
+}
+
+#contactMail {
+    margin-bottom: 15px;
+}
+
+
+#contactCourrier {
+    display: flex;
+}
+
+#contactCourrier img {
+    max-height: 51px;
+}
+
+footer p,
+footer a {
+    color: white;
+}
+
+#contact div {
+    margin-top: 0;
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+#contact h4 {
+    color: white;
+    text-decoration: underline;
+}
+
+
+  /*************/
+ /*-Home page-*/
+/*************/
 
 #presentation {
     display: flex;
     justify-content: space-around;
     margin-top: 100px;
+}
+
+#photoAuteur {
+    margin-right: 10px;
+}
+
+#photoAuteur img {
+    max-width: 400px;
+    width: 100%;
 }
 
 #texteAuteur {
@@ -228,17 +275,14 @@ alt {
     margin: 0;
 }
 
-#photoAuteur {
-    margin-right: 10px;
-}
-
-#photoAuteur img {
-    max-width: 400px;
-    width: 100%;
-}
-
 #projetEnCours {
     margin-top: 50px;
+}
+
+#projets {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .projet {
@@ -247,10 +291,10 @@ alt {
     background-color: rgb(220, 223, 229);
     padding-left: 10px;
     padding-right: 10px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
 
 #projetAVenir form,
@@ -269,14 +313,6 @@ alt {
     margin-bottom: 20px;
 }
 
-input {
-    margin-bottom: 10px;
-}
-
-label {
-    display: flex;
-}
-
 #validationFormulaire {
     max-width: 100px;
 }
@@ -285,7 +321,10 @@ label {
     margin-bottom: 10px;
 }
 
-/* Liste livres */
+
+  /****************/
+ /*-Liste livres-*/
+/****************/
 
 #books {
     display: flex;
@@ -295,50 +334,34 @@ label {
 
 }
 
+#book {
+    max-width: 300px;
+    display: flex;
+    padding: 15px;
+    background-color: rgb(220, 223, 229);
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #book h3 {
     text-align: center;
     padding: 5px;
 }
 
-#book {
-    max-width: 300px;
-    display: flex;
-    padding: 15px;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#book_title {
+.book_title {
     display: flex;
     justify-content: center;
-}
-
-#summary {
-    text-align: center;
-    margin-bottom: 50px;
 }
 
 #listeChapitre {
     text-align: center;
 }
 
-em a {
-    color: rgb(131, 144, 152);
-    text-decoration: underline;
-}
-
-em a:hover {
-    text-decoration: none;
-    border: 1px solid black;
-    color: white;
-    background-color: rgb(131, 144, 152);
-    padding: 3px;
-}
-
 #workInProgress {
     max-width: 300px;
     height: 350px;
     padding: 15px;
+    background-color: rgb(220, 223, 229);
     display: flex;
     flex-direction: column;
 }
@@ -348,93 +371,20 @@ em a:hover {
 }
 
 
+  /********************/
+ /*-Listes chapitres-*/
+/********************/
 
-
-
-/* Listes chapitres */
-
-.contenuChapitre p {
-    margin-bottom: 0 !important;
-    padding-right: 10px !important;
-    padding-left: 10px !important;
-    background-color: rgb(220, 223, 229) !important;
-    margin-top: 0px !important;
-    padding-right: 10px !important;
-    padding-left: 10px !important;
-}
-
-.contenuChapitre {
-    padding-top: 10px;
-    background-color: rgb(220, 223, 229);
-    padding-bottom: 10px;
-}
-
-.chapter p {
-    background-color: white;
-    margin-top: 0px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.chapter {
-    width: 80%;
-    margin-left: 10%;
-    padding-top: 60px;
-}
-
-.chapter h3 {
-    min-width: 210px;
-    padding-left: 5px;
-}
-
-h3 em {
-    font-size: 0.75em;
-}
-
-.readMoreAndComment {
-    display: flex;
-    padding-top: 10px;
-    padding-left: 10px;
-}
-
-.readMoreAndCommentMin {
-    display: flex;
-    padding-top: 10px;
-}
-
-#checkBox, #searchBar{
-    display: none;
-}
-
-.checkBox:hover {
-    cursor: pointer;
-}
-
-#loupe:before {
-    font-family: FontAwesome;
-    content: "\f002";
-    font-size: 24px;
+#retourRoman {
+    width: 200px;
     text-align: center;
+    background-color: rgb(131, 144, 152);
+    padding: 5px;
+    margin-bottom: 5px;
 }
 
-#checkBox[type="checkbox"]:checked ~ #searchBar{
-    transition: all 1s;
-    display: block;
-}
-
-#searchBar {
-    margin-top: 10px;
-}
-
-#loupe {
-    max-width: 25px;
-}
-
-.reverse {
-    display: flex;
-    flex-direction: column-reverse;
+#retourRoman a {
+    color: white;
 }
 
 #addPost {
@@ -464,22 +414,90 @@ h3 em {
     margin-top: 150px;
 }
 
-
-
-
-/* Chapitre/commentaires */
-
-#retourRoman a {
-    color: white;
+.contenuChapitre {
+    padding-top: 10px;
+    background-color: rgb(220, 223, 229);
+    padding-bottom: 10px;
 }
 
-#retourRoman {
-    width: 200px;
+.contenuChapitre p {
+    margin-bottom: 0 !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    background-color: rgb(220, 223, 229) !important;
+    margin-top: 0px !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+}
+
+.chapter p {
+    background-color: white;
+    margin-top: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.chapter {
+    width: 80%;
+    margin-left: 10%;
+    padding-top: 60px;
+}
+
+.chapter h3 {
+    min-width: 210px;
+    padding-left: 5px;
+}
+
+.readMoreAndComment {
+    display: flex;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.readMoreAndCommentMin {
+    display: flex;
+    padding-top: 10px;
+}
+
+#checkBox, #searchBar {
+    display: none;
+}
+
+.checkBox:hover {
+    cursor: pointer;
+}
+
+#loupe:before {
+    font-family: FontAwesome;
+    content: "\f002";
+    font-size: 24px;
     text-align: center;
-    background-color: rgb(131, 144, 152);
-    padding: 5px;
-    margin-bottom: 5px;
 }
+
+#checkBox[type="checkbox"]:checked ~ #searchBar {
+    transition: all 1s;
+    display: block;
+}
+
+#searchBar {
+    margin-top: 10px;
+}
+
+#loupe {
+    max-width: 25px;
+}
+
+.reverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
+  /*************************/
+ /*-Chapitre/commentaires-*/
+/*************************/
 
 #commentWriter {
     width: 100%;
@@ -489,7 +507,8 @@ h3 em {
 .comment {
     max-width: max-content;
     max-width: -moz-max-content;
-    background-color: white;
+    margin-top: 5px;
+    background-color: rgb(220, 223, 229);
 }
 
 .comment p {
@@ -502,7 +521,15 @@ h3 em {
     color: red;
 }
 
-/* Login page */
+
+  /**************/
+ /*-Login page-*/
+/**************/
+
+#presentationAdmin {
+    text-align: center;
+    margin-top: 100px;
+}
 
 #retourMainPage {
     display: flex;
@@ -513,11 +540,6 @@ h3 em {
     padding: 5px;
     background-color: rgb(131,144,152);
     color: white;
-}
-
-#presentationAdmin {
-    text-align: center;
-    margin-top: 100px;
 }
 
 #formulaireConnexion {
@@ -541,22 +563,13 @@ h3 em {
     justify-content: center;
 }
 
-hr{
-    margin-top: 50px;
-    max-width: 400px;
-}
 
+  /**************/
+ /*-Admin page-*/
+/**************/
 
-
-
-
-/* Admin page */
 #infosAdmin {
     margin-bottom: 25px;
-}
-
-#reportedTitle a{
-    color: red;
 }
 
 .section {
@@ -579,8 +592,29 @@ hr{
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.linkPosition {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.linkPosition a {
+    padding-bottom: 5px;
+}
+
+.delete {
+    color: red;
+    cursor: pointer;
+}
+
+.modify {
+    color: rgb(131, 144, 152) !important;
+}
+
 #boutonAjout {
     display: flex;
+    margin-top: 10px;
 }
 
 #boutonAjout a {
@@ -596,38 +630,8 @@ hr{
     color: rgb(131, 144, 152);
 }
 
-a i {
-    padding-top: 5px;
-}
-
-#reportedComments a {
+#reportedComments a, .confirmDelete {
     color: red;
-}
-
-.linkPosition {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.linkPosition a {
-    padding-bottom: 5px;
-}
-
-.delete {
-    color: red;
-}
-
-.modify {
-    color: rgb(131, 144, 152) !important;
-}
-
-#displayNone {
-    display: none;
-}
-
-.section h4 {
-    margin-top: 50px;
 }
 
 #reportedComments {
@@ -636,7 +640,9 @@ a i {
 
 
 
-/* Ajout nouveau roman */
+  /*************************/
+ /*-Ajout nouveau contenu-*/
+/*************************/
 
 #addContentForm label {
     margin-bottom: 10px;
@@ -653,12 +659,114 @@ a i {
 }
 
 #createNewContent {
-    height: 30px;
-    margin-top: 20px;
+    min-height: 30px;
+    width: 100%;
+    margin-top: 10px;
 }
-/*  */
-/*  */
-/*  */
-/*  */
 
 
+
+
+
+    /**************************/
+   /**************************/
+  /*-Media queries TABLETTE-*/
+ /**************************/
+/**************************/
+
+@media screen and (min-width: 100px) and (max-width: 770px) {
+
+    /*-content-*/
+    #content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+
+
+@media screen and (min-width: 100px) and (max-width: 710px) {
+
+    /*-Header / nav-*/
+    nav {
+        display: block;
+    }
+
+    #admin {
+        position: initial;
+        right: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    #public {
+        left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    /*-Liste livres-*/
+    #books {
+        margin-top: 50px;
+    }
+    #book, #workInProgress {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (min-width: 100px) and (max-width: 625px) {
+
+    /*-content-*/
+    #content {
+        margin-top: 95px;
+    }
+
+
+    /*-Home Page-*/
+    #presentation {
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+
+
+    /*-Listes chapitres-*/
+    .reverse {
+        margin-top: 20px;
+    }
+
+    .chapter {
+        width: 100%;
+        margin-left: 0;
+        padding-top: 20px;
+    }
+
+
+    /*-Chapitre/commentaires-*/
+    #commentWriter {
+        max-width: none;
+        height: 40px;
+    }
+}
+
+
+
+
+
+    /*****************************/
+   /*****************************/
+  /*-Media queries SMARTHPHONE-*/
+ /*****************************/
+/*****************************/
+
+@media screen and (min-width: 100px) and (max-width: 401px) {
+
+    /*-Header / nav-*/
+    header {
+        position: absolute;
+    }
+
+    #hautePage {
+        display: none;
+    }
+}

@@ -45,7 +45,7 @@ ob_start();
                 ?>
                 <div class="linkPosition">
                     <a class="modify" href="index.php?action=modifyBookPage&amp;bookId=<?= $data['id'] ?>">Modifier</a>
-                    <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>">Supprimer</a>
+                    <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce roman ?');">Supprimer</a>
                 </div>
                 <?php
                 }

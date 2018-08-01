@@ -86,11 +86,11 @@ ob_start();
                 <?php
                 if ($_GET['action'] == 'newBook') {
                 ?>
-                Créer nouveau roman
+                Créer un nouveau roman
                 <?php
                 } else if ($_GET['action'] == 'newPost') {
                 ?>
-                Créer nouveau chapitre
+                Créer un nouveau chapitre
                 <?php
                     }
                 ?>

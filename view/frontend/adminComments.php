@@ -30,7 +30,7 @@ ob_start();
                 </p>
                 <div class="linkPosition">
                     <a class="modify" href="index.php?action=validComment&amp;commentId=<?= $reportedComment['id'] ?>">Accepter le commentaire</a>
-                    <a href="index.php?action=delete&amp;commentId=<?= $reportedComment['id'] ?>">Supprimer</a>
+                    <a href="index.php?action=delete&amp;commentId=<?= $reportedComment['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
                 </div>
             </div>
             <?php

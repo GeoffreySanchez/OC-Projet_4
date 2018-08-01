@@ -12,6 +12,7 @@ if (!isset($_SESSION['permission'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=tsai70jk82c8slzi04uo143un10s7dpj8ltaiehcysqp3ymq"></script>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
@@ -26,7 +27,7 @@ if (!isset($_SESSION['permission'])) {
             <ul id="public">
                 <li class="animated pulse"><a href="index.php"><i class="fas fa-home"></i> Acceuil</a></li>
                 <li class="animated pulse"><a href="index.php?action=books"><i class="fas fa-book"></i> Liste des romans</a></li>
-                <li class="animated pulse"><a href=""><i class="fas fa-arrow-up"></i> haut de page</a></li>
+                <li id="hautePage" class="animated pulse"><a href=""><i class="fas fa-arrow-up"></i> haut de page</a></li>
             </ul>
             <?php
             if($_SESSION['name'] == 'Invité') {

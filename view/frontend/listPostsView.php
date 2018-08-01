@@ -37,7 +37,7 @@ ob_start();
                 ?>
                 <br>
                 <a href="index.php?action=modifyPostPage&amp;postId=<?= $data['id'] ?>&amp;bookId=<?= $_GET['id'] ?>">Modifier</a> /
-                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book=<?= $_GET['id'] ?>">Supprimer</a>
+                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book=<?= $_GET['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
                 <?php
                 }
                 ?>
