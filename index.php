@@ -93,9 +93,15 @@ try {
                     modifyBookPage($_GET['bookId']);
                 }
         }
+
         // Condition qui permet de modifier les données d'un roman //
         elseif ($_GET['action'] == "modifyBook") {
             modifyBook($_POST['contentTitle'], $_POST['contentToAdd'], $_GET['bookId']);
+        }
+
+        // Condition qui permet de publier un roman //
+        elseif ($_GET['action'] == "publish") {
+            publishBook($_GET['bookId']);
         }
 
 

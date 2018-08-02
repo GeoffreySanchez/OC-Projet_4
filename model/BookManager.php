@@ -8,7 +8,7 @@ class BookManager extends Manager
     {
         $db = $this->dbConnect();
         $books = $db->query('
-        SELECT id, title, summary
+        SELECT id, title, summary, publish
         FROM books');
         return $books;
     }
@@ -80,6 +80,18 @@ class BookManager extends Manager
         WHERE id = ?');
         $modifyBook = $bookToModify->execute(array($bookTitle, $bookSummary, $bookId));
         return $modifyBook;
+    }
+
+    // Publie un roman //
+    public function publishBook($bookId)
+    {
+        $db = $this->dbConnect();
+        $bookToModify = $db->prepare('
+        UPDATE books
+        SET publish = 1
+        WHERE id = ?');
+        $publishBook = $bookToModify->execute(array($bookId));
+        return $publishBook;
     }
 
 }

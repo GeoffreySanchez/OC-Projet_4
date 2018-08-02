@@ -45,6 +45,13 @@ ob_start();
                 ?>
                 <div class="linkPosition">
                     <a class="modify" href="index.php?action=modifyBookPage&amp;bookId=<?= $data['id'] ?>">Modifier</a>
+                    <?php
+                    if ($data['publish'] == 0) {
+                    ?>
+                    <a class="publish" href="index.php?action=publish&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir publier ce roman ?');">Publier</a>
+                    <?php
+                    }
+                    ?>
                     <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce roman ?');">Supprimer</a>
                 </div>
                 <?php

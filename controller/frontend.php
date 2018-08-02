@@ -66,6 +66,13 @@ function deleteBook($bookId) {
     header('Location: index.php?action=adminPage');
 }
 
+// Permet a l'écrivain de pouvoir passer un roman dans la section projet en cours //
+function publishBook($bookId) {
+    $bookManager = new BookManager;
+    $books = $bookManager->publishBook($bookId);
+    header('Location: index.php?action=adminPage');
+}
+
 
 
   //-------------------------------//
