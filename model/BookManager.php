@@ -3,7 +3,7 @@ require_once("model/Manager.php");
 
 class BookManager extends Manager
 {
-    // Récupère l'intégralité des roman dans la base de donnée //
+    // Récupère l'intégralité des romans publiés dans la base de donnée //
     public function getBooks()
     {
         $db = $this->dbConnect();
@@ -13,12 +13,34 @@ class BookManager extends Manager
         return $books;
     }
 
+    // Récupère l'intégralité des romans publiés dans la base de donnée //
+    public function getPublishedBooks()
+    {
+        $db = $this->dbConnect();
+        $PublishedBooks = $db->query('
+        SELECT id, title, summary, publish
+        FROM books
+        WHERE publish = 1');
+        return $PublishedBooks;
+    }
+
+    // Récupère l'intégralité des romans non publiés dans la base de donnée //
+    public function getUnpublishedBooks()
+    {
+        $db = $this->dbConnect();
+        $unpublishedBooks = $db->query('
+        SELECT id, title, summary, publish
+        FROM books
+        WHERE publish = 0');
+        return $unpublishedBooks;
+    }
+
     // Récupère un roman suivant son id //
     public function getBook($bookId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('
-        SELECT id, title, summary
+        SELECT id, title, summary, publish
         FROM books
         WHERE id = ?');
         $req->execute(array($bookId));

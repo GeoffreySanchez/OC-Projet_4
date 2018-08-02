@@ -297,28 +297,8 @@ footer a {
     align-items: center;
 }
 
-#projetAVenir form,
-#projetAVenir p,
-#projetAVenir i {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#projetAVenir p {
-    margin-bottom: 0;
-}
-
-#projetAVenir i {
-    margin-bottom: 20px;
-}
-
-#validationFormulaire {
-    max-width: 100px;
-}
-
-#choixProjet {
-    margin-bottom: 10px;
+.shadow {
+    box-shadow: 7px 7px 40px 6px rgba(0,0,0,0.75);
 }
 
 
@@ -728,6 +708,11 @@ footer a {
         flex-wrap: wrap;
         margin-top: 50px;
     }
+
+    /*-home page-*/
+    .shadow {
+    box-shadow: none;
+}
 
 
     /*-Listes chapitres-*/

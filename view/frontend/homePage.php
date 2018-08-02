@@ -12,9 +12,15 @@ ob_start();
             <img src="public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">
         </div>
         <div id="texteAuteur">
-            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.</p>
-            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.</p>
-            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant. Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant."</p>
+           <div class="shadow">
+                <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.
+                <br />
+                <br />
+                Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.
+                <br />
+                <br />
+                Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant. Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant."</p>
+            </div>
         </div>
     </div>
     <div>
@@ -22,8 +28,8 @@ ob_start();
             <h2>Les projets en cours :</h2>
             <div id="projets">
                 <?php
-                while ($data = $books->fetch())
-                    if(strlen($data['summary']) > 400) {
+                while ($data = $publishedBooks->fetch()) {
+                    if($data['publish'] == 1) {
                 ?>
                 <div class="projet">
                     <h3 class="animated shake">
@@ -34,26 +40,45 @@ ob_start();
                     </div>
                 </div>
                 <?php
+                    }
                 }
-                $books->closeCursor();
+                $publishedBooks->closeCursor();
                 ?>
             </div>
         </div>
         <div id="projetAVenir">
             <h2>Les projets à venirs :</h2>
-            <p>C'est vous qui aurez le dernier mot, profitez-en !</p>
-            <i>Fin des votes le 1 septembre 2018</i>
-            <form action="vote.php" method="post">
-                <div id="choixProjet">
-                    <label for="1"><input type="radio" name="roman" value="1" id="1"/>Billet simple pour l'Amazonie</label>
-                    <label for="2"><input type="radio" name="roman" value="2" id="2"/>Billet simple pour l'Himalaya</label>
-                    <label for="3"><input type="radio" name="roman" value="3" id="3"/>Billet simple pour la Siberie </label>
-                    <label for="4"><input type="radio" name="roman" value="4" id="4"/>Billet simple pour le Botswana</label>
+            <div id="projets">
+                <?php
+                while ($data2 = $unpublishedBooks->fetch()) {
+                    if($data2['publish'] == 0) {
+                ?>
+                <div class="projet">
+                   <?php
+                        if ($_SESSION['permission'] < 2) {
+                        ?>
+                    <h3 class="animated shake">
+                        <a href="index.php?action=listPosts&amp;id=<?= $data2['id'] ?>"><?= htmlspecialchars($data2['title']) ?></a>
+                    </h3>
+                    <?php
+                    } else {
+                        ?>
+                    <h3>
+                        <?= htmlspecialchars($data2['title']) ?>
+                    </h3>
+                    <?php
+                    }
+                    ?>
+                    <div>
+                        <?= $data2['summary'] ?>
+                    </div>
                 </div>
-                <div id="validationFormulaire">
-                    <input type="submit" value="Valider">
-                </div>
-            </form>
+                <?php
+                    }
+                }
+                $unpublishedBooks->closeCursor();
+                ?>
+            </div>
         </div>
     </div>
 </div>

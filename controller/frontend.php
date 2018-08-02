@@ -18,7 +18,8 @@ require_once('model/LoginManager.php');
 // Affiche tout les livres de la base de donnée //
 function listBooks() {
     $bookManager = new BookManager;
-    $books = $bookManager->getBooks();
+    $publishedBooks = $bookManager->getPublishedBooks();
+    $unpublishedBooks = $bookManager->getUnpublishedBooks();
     require('view/frontend/listBooks.php');
 }
 
@@ -260,6 +261,7 @@ function adminPage() {
 // Affiche la page d'accueil avec les projets en cours //
 function home() {
     $bookManager = new BookManager;
-    $books = $bookManager->getBooks();
+    $publishedBooks = $bookManager->getPublishedBooks();
+    $unpublishedBooks = $bookManager->getUnpublishedBooks();
     require('view/frontend/homePage.php');
 }
