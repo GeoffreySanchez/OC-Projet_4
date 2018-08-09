@@ -36,7 +36,7 @@ function addNewBook($bookTitle, $bookSummary) {
         throw new Exception('Impossible d\'ajouter le nouveau roman');
     }
     else {
-        header('Location: index.php?action=adminPage');
+        header('Location: administration.html');
     }
 }
 
@@ -55,7 +55,7 @@ function modifyBook($bookTitle, $bookSummary, $bookId) {
         throw new exception('Impossible de modifier ce roman');
     }
     else {
-       header('Location: index.php?action=adminPage');
+       header('Location: administration.html');
     }
 }
 
@@ -63,14 +63,14 @@ function modifyBook($bookTitle, $bookSummary, $bookId) {
 function deleteBook($bookId) {
     $bookManager = new BookManager;
     $books = $bookManager->deleteBook($bookId);
-    header('Location: index.php?action=adminPage');
+    header('Location: administration.html');
 }
 
 // Permet a l'écrivain de pouvoir passer un roman dans la section projet en cours //
 function publishBook($bookId) {
     $bookManager = new BookManager;
     $books = $bookManager->publishBook($bookId);
-    header('Location: index.php?action=adminPage');
+    header('Location: administration.html');
 }
 
 
@@ -110,7 +110,7 @@ function addNewPost($bookId, $postTitle, $postContent) {
         throw new Exception('Impossible d\'ajouter le nouveau chapitre');
     }
     else {
-        header('Location: index.php?action=listPosts&id='.$bookId.'');
+        header('Location: roman-'.$_GET['bookId'].'-'.$_GET['bookTitle'].'.html');
     }
 }
 
@@ -122,22 +122,22 @@ function modifyPostPage($postId) {
 }
 
 // Modifie dans la base de donnée les éléments saisies dans le formulaire //
-function modifyPost($postTitle, $postContent, $postId,$postBookId) {
+function modifyPost($postTitle, $postContent, $postId, $bookId, $bookTitle) {
     $postManager = new PostManager();
     $returnPost = $postManager->modifyPost($postTitle, $postContent, $postId);
     if ($modifyPost === false) {
         throw new exception('Impossible de modifier ce roman');
     }
     else {
-       header('Location: index.php?action=listPosts&id='.$postBookId.'');
+       header('Location: roman-'.$bookId.'-'.$bookTitle.'.html');
     }
 }
 
 // Permet à l'écrivain de pouvoir supprimer l'intégralité d'un chapitre //
-function deletePost($postId, $bookId) {
+function deletePost($postId, $bookId, $bookTitle) {
     $postManager = new PostManager();
     $post = $postManager->deletePost($postId);
-    header('Location: index.php?action=listPosts&id='.$bookId.'');
+    header('Location: roman-'.$bookId.'-'.$bookTitle.'.html');
 }
 
 
@@ -154,22 +154,22 @@ function comment() {
 }
 
 // Permet de poster un commentaire sur un chapitre //
-function addComment($postId, $bookId, $comment, $userId) {
+function addComment($postId, $bookId, $comment, $userId, $bookTitle, $postTitle) {
     $commentManager = new CommentManager();
     $affectedLines = $commentManager->postComment($postId, $comment, $userId);
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id='.$postId.'&book_id='.$bookId.'&user_id='.$userId);
+        header('Location: roman-'.$bookId.'-'.$bookTitle.'-chapitre-'.$postId.'-'.$postTitle.'-'.$userId.'.html');
     }
 }
 
 // Permet de signaler un commentaire indésirable //
-function reportComment($commentId, $id, $book_id, $user_id) {
+function reportComment($commentId, $postId, $bookId, $userId, $bookTitle, $postTitle) {
     $commentManager = new CommentManager();
     $addReport = $commentManager->reportComment($commentId);
-    header('Location: index.php?action=post&id='.$id.'&book_id='.$book_id.'&user_id='.$user_id.'');
+    header('Location: roman-'.$bookId.'-'.$bookTitle.'-chapitre-'.$postId.'-'.$postTitle.'-'.$userId.'.html');
 }
 
 // Permet d'accéder à la page d'administration des commentaires et affiche uniquement ceux qui sont signalés //
@@ -191,7 +191,7 @@ function deleteComment($id) {
     if ($_SESSION['permission'] < 3) {
         $commentManager = new CommentManager();
         $deleteComment = $commentManager->deleteComments($id);
-        header('Location: index.php?action=adminComments');
+        header('Location: administration-commentaires.html');
     }
     else {
         require('view/frontend/homePage.php');
@@ -202,7 +202,7 @@ function deleteComment($id) {
 function acceptReportedComment($id) {
     $commentManager = new CommentManager();
     $addReport = $commentManager->acceptComment($id);
-    header('Location: index.php?action=adminPage');
+    header('Location: administration-commentaires.html');
 }
 
 
@@ -211,7 +211,7 @@ function acceptReportedComment($id) {
  // Fonctions liées à LoginManager //
 //--------------------------------//
 
-// Affiche la page d'identification en récupérant dans la base de donnée l'intégralité des utilisateurs //
+// Affiche la page d'identification en récupérant dans la base de donnée l'intégralité des utilisateurs //F
 function login() {
     $usersManager = new LoginManager();
     $users = $usersManager->getUsers();
@@ -229,7 +229,7 @@ function loginVerification ($name, $password) {
                     $_SESSION['name'] = $name;
                     $_SESSION['id'] = $recuperationId;
                     $_SESSION['permission'] = $recuperationPermission;
-                    header('Location: index.php?action=adminPage');
+                    header('Location: administration.html');
                 }
                 else {
                     throw new Exception('Mauvais identifiant ou mot de passe');
@@ -242,7 +242,7 @@ function logout() {
     $_SESSION['name'] = 'Invité';
     $_SESSION['id'] = '3';
     $_SESSION['permission'] = '3';
-    header('Location: index.php');
+    header('Location: index.html');
 }
 
 // Affiche la page d'administration //
@@ -255,7 +255,7 @@ function adminPage() {
         require('view/frontend/adminPage.php');
     }
     else {
-        require('view/frontend/homePage.php');
+        header('Location: index.html');
     }
 }
 

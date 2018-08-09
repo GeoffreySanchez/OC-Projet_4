@@ -30,10 +30,12 @@ ob_start();
                 <?php
                 while ($data = $publishedBooks->fetch()) {
                     if($data['publish'] == 1) {
+                        $title = $data['title'];
+                        $titleEdit = str_replace(' ','',ucwords($title));
                 ?>
                 <div class="projet">
-                    <h3 class="animated shake">
-                        <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a>
+                    <h3 class="animated pulse">
+                        <a href="roman-<?= $data['id'] ?>-<?= $titleEdit ?>.html"><?= htmlspecialchars($data['title']) ?></a>
                     </h3>
                     <div>
                         <?= $data['summary'] ?>
@@ -52,13 +54,15 @@ ob_start();
                 <?php
                 while ($data2 = $unpublishedBooks->fetch()) {
                     if($data2['publish'] == 0) {
+                        $title2 = $data2['title'];
+                        $titleEdit2 = str_replace(' ','',ucwords($title2));
                 ?>
                 <div class="projet">
                    <?php
                         if ($_SESSION['permission'] < 2) {
                         ?>
-                    <h3 class="animated shake">
-                        <a href="index.php?action=listPosts&amp;id=<?= $data2['id'] ?>"><?= htmlspecialchars($data2['title']) ?></a>
+                    <h3 class="animated pulse">
+                        <a href="roman-<?= $data2['id'] ?>-<?= $titleEdit2 ?>.html"><?= htmlspecialchars($data2['title']) ?></a>
                     </h3>
                     <?php
                     } else {

@@ -6,14 +6,14 @@ $title = htmlspecialchars($book['title']);
 ob_start();
 ?>
 <div id="content" >
-    <div id="retourRoman" class="animated shake">
-        <a href="index.php?action=books">Retour à la liste des romans</a>
+    <div id="retourRoman" class="animated pulse">
+        <a href="liste-romans.html">Retour à la liste des romans</a>
     </div>
     <?php
     if($_SESSION['permission'] == 1) {
     ?>
     <div id="addPost">
-        <a class="animated shake" href="index.php?action=newPost&amp;bookId=<?= $_GET['id']?>">Ajouter un nouveau chapitre</a>
+        <a class="animated pulse" href="ajouter-chapitre-<?= $_GET['id']?>-<?= $_GET['title'] ?>.html">Ajouter un nouveau chapitre</a>
     </div>
     <?php
     }
@@ -24,6 +24,8 @@ ob_start();
     $arrTitle = array();
     $arrId = array();
     while ($data = $posts->fetch()) {
+        $title = $data['title'];
+        $titleEdit = str_replace(' ','',ucwords($title));
         if (strlen($data['content']) < 4000) {
             $nChapitre = $nChapitre + 1;
     ?>
@@ -36,8 +38,8 @@ ob_start();
                 if ($_SESSION['permission'] == 1) {
                 ?>
                 <br>
-                <a href="index.php?action=modifyPostPage&amp;postId=<?= $data['id'] ?>&amp;bookId=<?= $_GET['id'] ?>">Modifier</a> /
-                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book=<?= $_GET['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
+                <a href="editer-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>.html">Modifier</a> /
+                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book_id=<?= $_GET['id'] ?>&amp;bookTitle=<?= $_GET['title'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
                 <?php
                 }
                 ?>
@@ -45,7 +47,7 @@ ob_start();
             <div class="contenuChapitre">
                 <?= $data['content'] ?>
                 <em class="readMoreAndComment">
-                    <a href="index.php?action=post&amp;id=<?= $data['id'] ?>&amp;book_id=<?= $book['id'] ?>&amp;user_id=<?= $_SESSION['id'] ?>">Commenter</a>
+                    <a href="roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-<?= $_SESSION['id'] ?>.html">Commenter</a>
                 </em>
             </div>
         </div>
@@ -62,8 +64,8 @@ ob_start();
                 if ($_SESSION['permission'] == 1) {
                 ?>
                 <br>
-                <a href="index.php?action=modifyPostPage&amp;postId=<?= $data['id'] ?>&amp;bookId=<?= $_GET['id'] ?>">Modifier</a> /
-                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book=<?= $_GET['id'] ?>">Supprimer</a>
+                <a href="editer-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>.html">Modifier</a> /
+                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book_id=<?= $_GET['id'] ?>&amp;bookTitle=<?= $_GET['title'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
                 <?php
                 }
                 ?>
@@ -72,7 +74,7 @@ ob_start();
                 <?= $data['contentMin'] ?>...
                 <br />
                 <em class="readMoreAndCommentMin">
-                    <a href="index.php?action=post&amp;id=<?= $data['id'] ?>&amp;book_id=<?= $book['id'] ?>&amp;user_id=<?= $_SESSION['id'] ?>"> Lire la suite et commenter</a>
+                    <a href="roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-<?= $_SESSION['id'] ?>.html"> Lire la suite et commenter</a>
                 </em>
             </div>
         </div>
@@ -83,6 +85,8 @@ ob_start();
         }
         $posts->closeCursor();
         if (!empty($arrTitle)) {
+            $title = $book['title'];
+            $titleEdit = str_replace(' ','',ucwords($title));
         ?>
         <div id="searchMenu">
             <input id="checkBox" type="checkbox">
@@ -95,7 +99,7 @@ ob_start();
                     $i = 0;
                     while ( $i < count($arrTitle)){
                     ?>
-                    <option value="index.php?action=listPosts&amp;id=<?=$book['id']?>#<?=$arrId[$i] ?>"><?=$arrTitle[$i] ?></option>
+                    <option value="roman-<?=$_GET['id'] ?>-<?=$titleEdit ?>.html#<?=$arrId[$i] ?>"><?=$arrTitle[$i] ?></option>
                     <?php
                     $i++;
                     }

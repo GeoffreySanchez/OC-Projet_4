@@ -1,0 +1,40 @@
+Options +FollowSymlinks
+RewriteEngine On
+
+# Retirer le commentaire ligne 6 avant d'exporter
+#----------------------------------------#
+                #RewriteBase /
+#----------------------------------------#
+
+# règle page d'accueil #
+RewriteRule	^index.html$	index.php	[L]
+
+# règle pour la page des romans #
+RewriteRule	^liste-romans.html$	index.php?action=books	[L]
+
+# règle pour la page de connexion #
+RewriteRule	^identification.html$	index.php?action=login	[L]
+
+# règle pour la page d'administration #
+RewriteRule	^administration.html$	index.php?action=adminPage	[L]
+
+# règle pour éditer la page d'administration des commentaires #
+RewriteRule	^administration-commentaires.html$	index.php?action=adminComments	[L]
+
+# règle pour les romans #
+RewriteRule	^roman-([\d]+)-([\w']+).html$	index.php?action=listPosts&id=$1&title=$2	[L]
+
+# règle pour accéder aux chapitres #
+RewriteRule	^roman-([\d]+)-([\w']+)-chapitre-([\d]+)-([\w]+)-([\wé]+).html$	index.php?action=post&book_id=$1&book_title=$2&id=$3&title=$4&user_id=$5	[L]
+
+# règle pour ajouter un nouveau chapitre #
+RewriteRule	^ajouter-chapitre-([\d]+)-([\w']+).html$	index.php?action=newPost&bookId=$1&bookTitle=$2	[L]
+
+# règle pour ajouter un nouveau roman #
+RewriteRule	^ajouter-roman.html$	index.php?action=newBook	[L]
+
+# règle pour éditer un roman #
+RewriteRule	^editer-roman-([\d]+)-([\w']+).html$	index.php?action=modifyBookPage&bookId=$1&bookTitle=$2	[L]
+
+# règle pour éditer un chapitre #
+RewriteRule	^editer-chapitre-([\d]+)-([\w']+)-roman-([\d]+)-([\w']+).html$	index.php?action=modifyPostPage&postId=$1&postTitle=$2&bookId=$3&bookTitle=$4	[L]

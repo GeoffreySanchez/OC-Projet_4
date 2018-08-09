@@ -10,6 +10,8 @@ ob_start();
         <?php
         while ($data = $publishedBooks->fetch()) {
             if ($data['publish'] == 1) {
+                $title = $data['title'];
+                $titleEdit = str_replace(' ','',ucwords($title));
         ?>
         <div id="book">
             <div class="book_title">
@@ -19,9 +21,9 @@ ob_start();
                 <?= $data['summary'] ?>
                 <br />
             </div>
-            <div id="listeChapitre" class="animated shake">
+            <div id="listeChapitre" class="animated pulse">
                 <em>
-                    <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">Accès aux chapitres</a>
+                    <a href="roman-<?= $data['id'] ?>-<?= $titleEdit ?>.html">Accès aux chapitres</a>
                 </em>
             </div>
         </div>
@@ -31,6 +33,8 @@ ob_start();
         $publishedBooks->closeCursor();
         while ($data2 = $unpublishedBooks->fetch()) {
             if($data2['publish'] == 0) {
+                $title = $data2['title'];
+                $titleEdit = str_replace(' ','',ucwords($title));
         ?>
         <div id="workInProgress">
             <div class="book_title">
@@ -44,9 +48,9 @@ ob_start();
                 <?php
                 if ($_SESSION['permission'] == 1) {
                 ?>
-                <div id="listeChapitre" class="animated shake">
+                <div id="listeChapitre" class="animated pulse">
                     <em>
-                        <a href="index.php?action=listPosts&amp;id=<?= $data2['id'] ?>">Accès aux chapitres</a>
+                        <a href="roman-<?= $data2['id'] ?>-<?= $titleEdit?>.html">Accès aux chapitres</a>
                     </em>
                 </div>
                 <?php

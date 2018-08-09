@@ -47,7 +47,7 @@ ob_start();
         <?php
         } else if ($_GET['action'] == 'newPost') {
         ?>
-        index.php?action=addNewPost&amp;bookId=<?= $_GET['bookId']?>
+        index.php?action=addNewPost&amp;bookId=<?= $_GET['bookId']?>&amp;bookTitle=<?= $_GET['bookTitle']?>
         <?php
             }
         ?>

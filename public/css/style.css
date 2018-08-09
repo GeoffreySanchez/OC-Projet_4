@@ -103,7 +103,6 @@ em a {
 
 em a:hover {
     text-decoration: none;
-    border: 1px solid black;
     color: white;
     background-color: rgb(131, 144, 152);
     padding: 3px;
@@ -620,6 +619,10 @@ footer a {
 
 #reportedComments {
     margin-top: 150px;
+}
+
+.linkPosition a:hover {
+    text-decoration: underline;
 }
 
 

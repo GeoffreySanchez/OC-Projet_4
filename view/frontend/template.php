@@ -25,22 +25,22 @@ if (!isset($_SESSION['permission'])) {
     <header>
         <nav>
             <ul id="public">
-                <li class="animated pulse"><a href="index.php"><i class="fas fa-home"></i> Acceuil</a></li>
-                <li class="animated pulse"><a href="index.php?action=books"><i class="fas fa-book"></i> Liste des romans</a></li>
+                <li class="animated pulse"><a href="index.html"><i class="fas fa-home"></i> Acceuil</a></li>
+                <li class="animated pulse"><a href="liste-romans.html"><i class="fas fa-book"></i> Liste des romans</a></li>
                 <li id="hautePage" class="animated pulse"><a href=""><i class="fas fa-arrow-up"></i> haut de page</a></li>
             </ul>
             <?php
             if($_SESSION['name'] == 'Invité') {
             ?>
             <ul id="admin">
-                <li class="animated pulse"><a href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li class="animated pulse"><a href="identification.html"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
             </ul>
             <?php
             }
             else {
                 ?>
             <ul id="admin">
-                <li class="animated pulse"><a href="index.php?action=adminPage"><i class="fas fa-sign-in-alt"></i> Administration</a></li>
+                <li class="animated pulse"><a href="administration.html"><i class="fas fa-sign-in-alt"></i> Administration</a></li>
                 <li class="animated pulse"><a href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Déconnexion</a></li>
             </ul>
                 <?php

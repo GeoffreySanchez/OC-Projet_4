@@ -53,7 +53,7 @@ ob_start();
         <?php
         } elseif ($_GET['action'] == 'modifyPostPage') {
         ?>
-        <form action="index.php?action=modifyPost&amp;postId=<?= $_GET['postId']?>&amp;bookId=<?= $_GET['bookId']?>" method='post'>
+        <form action="index.php?action=modifyPost&amp;postId=<?= $_GET['postId']?>&amp;bookId=<?= $_GET['bookId']?>&amp;bookTitle=<?= $_GET['bookTitle']?>" method='post'>
             <label for="contentTitle">Titre du chapitre :</label>
             <input type="text" name="contentTitle" value="<?= $returnPost['title']?>" id="contentTitle" required>
             <label for="contentToAdd">Contenu du chapitre :</label>

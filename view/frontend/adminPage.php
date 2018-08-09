@@ -30,10 +30,12 @@ ob_start();
         <div id="listeRomansAdmin">
             <?php
             while ($data = $books->fetch()) {
+                $title = $data['title'];
+                $titleEdit = str_replace(' ','',ucwords($title));
             ?>
             <div class="projet" id="<?= $data['id']?>">
-                <h3 class="animated shake">
-                    <a href="index.php?action=listPosts&amp;id=<?= $data['id'] ?>">
+                <h3 class="animated pulse">
+                    <a href="roman-<?= $data['id'] ?>-<?= $titleEdit?>.html">
                         <?= htmlspecialchars($data['title']) ?>
                     </a>
                 </h3>
@@ -44,15 +46,15 @@ ob_start();
                 if ($_SESSION['permission'] == 1) {
                 ?>
                 <div class="linkPosition">
-                    <a class="modify" href="index.php?action=modifyBookPage&amp;bookId=<?= $data['id'] ?>">Modifier</a>
+                    <a class="modify animated pulse" href="editer-roman-<?= $data['id'] ?>-<?= $titleEdit ?>.html">Modifier</a>
                     <?php
                     if ($data['publish'] == 0) {
                     ?>
-                    <a class="publish" href="index.php?action=publish&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir publier ce roman ?');">Publier</a>
+                    <a class="publish animated pulse" href="index.php?action=publish&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir publier ce roman ?');">Publier</a>
                     <?php
                     }
                     ?>
-                    <a class="delete" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce roman ?');">Supprimer</a>
+                    <a class="delete animated pulse" href="index.php?action=delete&amp;bookId=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce roman ?');">Supprimer</a>
                 </div>
                 <?php
                 }
@@ -64,7 +66,7 @@ ob_start();
             if ($_SESSION['permission'] == 1) {
             ?>
             <div id='boutonAjout'>
-                <a href="index.php?action=newBook">Ajouter un roman<i id='ajoutRomanBouton' class="fas fa-plus-circle fa-4x"></i></a>
+                <a href="ajouter-roman.html">Ajouter un roman<i id='ajoutRomanBouton' class="fas fa-plus-circle fa-4x"></i></a>
             </div>
             <?php
             }
@@ -82,7 +84,7 @@ ob_start();
             $reportedComments->closeCursor();
             if ($reportCount > 0) {
             ?>
-            <a href="index.php?action=adminComments">Vous avez <?= $reportCount?> commentaire(s) à modérer.</a>
+            <a href="administration-commentaires.html">Vous avez <?= $reportCount?> commentaire(s) à modérer.</a>
             <?php
             } else {
             ?>

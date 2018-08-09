@@ -37,7 +37,7 @@ try {
         elseif ($_GET['action'] == 'addComment') {
             // On vérifie si l'id du chapitre est bien présent //
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                addComment($_GET['id'], $_GET['book_id'], $_POST['comment'], $_GET['user_id']);
+                addComment($_GET['id'], $_GET['book_id'], $_POST['comment'], $_GET['user_id'], $_GET['book_title'], $_GET['post_title']);
             }
             else {
                 throw new Exception('Le lien est mort');
@@ -48,7 +48,7 @@ try {
         elseif ($_GET['action'] == 'reportComment') {
             // On vérifie si l'id du commentaire est bien présent  //
             if (isset($_GET['comment_id']) && $_GET['comment_id'] > 0) {
-                reportComment($_GET['comment_id'], $_GET['id'], $_GET['book_id'], $_GET['user_id']);
+                reportComment($_GET['comment_id'], $_GET['id'], $_GET['book_id'], $_GET['user_id'], $_GET['book_title'], $_GET['post_title']);
             }
             else {
                 throw new Exception('Ce commentaire n\'existe pas.');
@@ -145,7 +145,7 @@ try {
 
         // Condition qui permet de modifier les données d'un chapitre //
         elseif ($_GET['action'] == "modifyPost") {
-            modifyPost($_POST['contentTitle'], $_POST['contentToAdd'], $_GET['postId'], $_GET['bookId']);
+            modifyPost($_POST['contentTitle'], $_POST['contentToAdd'], $_GET['postId'], $_GET['bookId'], $_GET['bookTitle']);
         }
 
 
@@ -211,7 +211,7 @@ try {
                     throw new Exception('Cette fonction est réservée aux administrateurs');
                 }
                 else {
-                    deletePost($_GET['postId'], $_GET['book']);
+                    deletePost($_GET['postId'], $_GET['book_id'], $_GET['bookTitle']);
                 }
             }
 

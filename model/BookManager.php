@@ -64,8 +64,8 @@ class BookManager extends Manager
     {
         $db = $this->dbConnect();
         $addBook = $db->prepare('
-        INSERT INTO books (title, summary)
-        VALUES (?, ?)');
+        INSERT INTO books (title, summary, publish)
+        VALUES (?, ?, 0)');
         $pushBook = $addBook->execute(array($bookTitle, $bookSummary));
         return $pushBook;
     }
