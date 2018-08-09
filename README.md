@@ -1,3 +1,3 @@
-Projet OpenClassrooms
+Projet OpenClassrooms.
 
-Parcours: Développeur web junior
+Parcours: Développeur web junior.
