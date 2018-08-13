@@ -250,6 +250,11 @@ try {
             logout();
         }
 
+        // Condition pour l'ajout d'un nouvel utilisateur //
+        elseif($_GET['action'] == 'addUser') {
+            addUser($_POST['identifiant'], $_POST['password']);
+        }
+
         // Condition d'accès a la page d'administration //
         elseif($_GET['action'] == 'adminPage') {
             // On lance une session si nous n'en avons aucune d'ouverte //

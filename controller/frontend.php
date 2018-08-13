@@ -220,10 +220,12 @@ function login() {
 
 // Vérifie les données saisies dans le formulaire d'identification avec celle de la base de donnée //
 function loginVerification ($name, $password) {
+
     $loginManager = new LoginManager();
-    $verification = $loginManager->loginVerification($name, $password);
+    $recuperationPassword = $loginManager->loginVerification($name);
     $recuperationId = $loginManager->getUserId($name);
     $recuperationPermission = $loginManager->getUserPermission($name);
+    $verification = password_verify($password, $recuperationPassword['password']);
     if ($verification == true) {
                     session_start();
                     $_SESSION['name'] = $name;
@@ -234,6 +236,19 @@ function loginVerification ($name, $password) {
                 else {
                     throw new Exception('Mauvais identifiant ou mot de passe');
                 }
+}
+
+// Permet d'ajouter un nouvel utilisateur dans la base de donnée //
+function addUser($identifiant, $password) {
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    $loginManager = new LoginManager();
+    $user = $loginManager->addUser($identifiant, $passwordHash);
+    if ($pushUser === false) {
+        throw new Exception('Impossible d\'ajouter le nouvel utilisateur');
+    }
+    else {
+        header('Location: administration.html');
+    }
 }
 
 // Déconnecte l'utilisateur et modifie ses $_SESSION //

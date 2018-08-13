@@ -40,20 +40,27 @@ class LoginManager extends Manager
     }
 
     // Vérifie sur un utilisateur existe dans la base de donnée suivant un nom et un mot de passe //
-    public function loginVerification($name, $password)
+    public function loginVerification($name)
     {
         $db = $this->dbConnect();
         $verification = $db->prepare('
-        SELECT COUNT(*) AS result
+        SELECT password
         FROM users
-        WHERE name = ? AND password = MD5(?)');
-        $verification->execute(array($name, $password));
+        WHERE name = ? ');
+        $verification->execute(array($name));
         $dataVerification = $verification->fetch();
-        if($dataVerification['result'] == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return $dataVerification;
+    }
+
+    // Permet d'ajouter de nouveaux utilisateurs sans accès par défaut//
+    public function addUser($identifiant, $passwordHash)
+    {
+        $db = $this->dbConnect();
+        $insertUser = $db->prepare('
+        INSERT INTO users (name, permission, password)
+        VALUES (?, 3, ?)');
+        $pushUser  = $insertUser->execute(array($identifiant, $passwordHash));
+        return $pushUser;
     }
 }
 
