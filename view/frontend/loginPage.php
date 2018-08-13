@@ -16,7 +16,7 @@ ob_start();
             Cliquez sur le lien ci-dessous pour retrouver votre chemin.
         </p>
         <div id="retourMainPage">
-            <a href="index.html" class="animated shake">Retour à l'accueil</a>
+            <a href="index.html" class="animated pulse">Retour à l'accueil</a>
         </div>
     </div>
     <hr />
