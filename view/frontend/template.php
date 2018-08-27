@@ -1,9 +1,9 @@
 <?php
 if(!isset($_SESSION['name'])) {
-    $_SESSION['name'] = 'Invité';
+    $_SESSION['name'] = 'Visiteur';
 }
 if (!isset($_SESSION['id'])) {
-    $_SESSION['id'] = '3';
+    $_SESSION['id'] = '4';
 }
 if (!isset($_SESSION['permission'])) {
     $_SESSION['permission'] = '3';
@@ -52,7 +52,6 @@ if (!isset($_SESSION['permission'])) {
     <footer>
          <div id="contact">
             <div id="contactTitle">
-                <img src="public/images/unicorn_dab.png" alt="clin d'oeil">
                 <h4>Informations de contact: </h4>
             </div>
             <div id="infosContact">

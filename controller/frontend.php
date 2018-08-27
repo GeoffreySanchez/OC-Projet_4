@@ -254,8 +254,8 @@ function addUser($identifiant, $password) {
 // Déconnecte l'utilisateur et modifie ses $_SESSION //
 function logout() {
     session_start();
-    $_SESSION['name'] = 'Invité';
-    $_SESSION['id'] = '3';
+    $_SESSION['name'] = 'Visiteur';
+    $_SESSION['id'] = '4';
     $_SESSION['permission'] = '3';
     header('Location: index.html');
 }
