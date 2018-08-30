@@ -1,14 +1,3 @@
-<?php
-if(!isset($_SESSION['name'])) {
-    $_SESSION['name'] = 'Visiteur';
-}
-if (!isset($_SESSION['id'])) {
-    $_SESSION['id'] = '4';
-}
-if (!isset($_SESSION['permission'])) {
-    $_SESSION['permission'] = '3';
-}
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,7 +19,7 @@ if (!isset($_SESSION['permission'])) {
                 <li id="hautePage" class="animated pulse"><a href=""><i class="fas fa-arrow-up"></i> haut de page</a></li>
             </ul>
             <?php
-            if($_SESSION['name'] == 'Invité') {
+            if($_SESSION['name'] == 'Visiteur') {
             ?>
             <ul id="admin">
                 <li class="animated pulse"><a href="identification.html"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>

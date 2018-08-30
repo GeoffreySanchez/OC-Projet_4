@@ -7,7 +7,7 @@ ob_start();
 ?>
 <div id="content">
     <?php
-    if ($_SESSION['name'] == 'Invité') {
+    if ($_SESSION['name'] == 'Visiteur') {
     ?>
     <div id="presentationAdmin">
         <p>

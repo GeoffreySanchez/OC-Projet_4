@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 août 2018 à 13:43
+-- Généré le :  lun. 27 août 2018 à 10:56
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `report` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `DeleteAllAssociateCommentsWhenPostDelete` (`post_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `comments`
@@ -123,7 +123,7 @@ INSERT INTO `users` (`id`, `name`, `permission`, `password`) VALUES
 (1, 'Jean', 1, '$2y$10$fxob5vSRLhRp5cy6.pfqJuk7Ke.TZePrufAqle8zc9TRc9dP8by/K'),
 (2, 'Administrateur', 1, '$2y$10$9.cpLPBaCg3f3ZQvX9.CLOpAl4qsfuvcVV7b0crCxpqdM9HOWVMqS'),
 (3, 'Modérateur', 2, '$2y$10$pvLmpkDXNBkrzjthINtzoug4uRq8BKIZHA5Mk25OsCNlWGibTl7Qm'),
-(4, 'Invité', 3, '');
+(4, 'Visiteur', 3, '');
 
 --
 -- Contraintes pour les tables déchargées
