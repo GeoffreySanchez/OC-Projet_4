@@ -3,7 +3,7 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# Retirer le commentaire ligne 6 avant d'exporter
+# Retirer le commentaire ligne 8 avant d'exporter
 #----------------------------------------#
                 #RewriteBase /
 #----------------------------------------#

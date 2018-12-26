@@ -34,11 +34,23 @@ ob_start();
                 $titleEdit = str_replace(' ','',ucwords($title));
             ?>
             <div class="projet" id="<?= $data['id']?>">
-                <h3 class="animated pulse">
+                <?php
+                if ($_SESSION['permission'] == 1 || $data['publish'] == 1) {
+                ?>
+                <h3 class="animated pulse" >
                     <a href="roman-<?= $data['id'] ?>-<?= $titleEdit?>.html">
                         <?= htmlspecialchars($data['title']) ?>
                     </a>
                 </h3>
+                <?php
+                } else {
+                ?>
+                <h3>
+                    <p><?= htmlspecialchars($data['title']) ?></p>
+                </h3>
+                <?php
+                }
+                ?>
                 <div>
                     <?= $data['summary'] ?>
                 </div>
