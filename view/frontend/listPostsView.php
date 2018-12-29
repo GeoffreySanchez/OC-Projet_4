@@ -2,11 +2,11 @@
 if (session_id() == '') {
    session_start();
 }
-$title = htmlspecialchars($book['title']);
+$pageTitle = htmlspecialchars($book['title']);
 ob_start();
 ?>
 <div id="content" >
-    <div id="retourRoman" class="animated pulse">
+    <div id="retourPrecedent" class="animated pulse">
         <a href="liste-romans.html">Retour à la liste des romans</a>
     </div>
     <?php
@@ -26,60 +26,34 @@ ob_start();
     while ($data = $posts->fetch()) {
         $title = $data['title'];
         $titleEdit = str_replace(' ','',ucwords($title));
-        if (strlen($data['content']) < 4000) {
-            $nChapitre = $nChapitre + 1;
+$nChapitre = $nChapitre + 1;
     ?>
         <div id="<?=$nChapitre ?>" class="chapter chapter<?= $data['id'] ?>">
-            <h3>
-                <?= htmlspecialchars($data['title']) ?>
-                <br>
-                <em>paru le <?= $data['creation_date_fr'] ?></em>
-                <?php
-                if ($_SESSION['permission'] == 1) {
-                ?>
-                <br>
-                <a href="editer-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>.html">Modifier</a> /
-                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book_id=<?= $_GET['id'] ?>&amp;bookTitle=<?= $_GET['title'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
-                <?php
-                }
-                ?>
-            </h3>
-            <div class="contenuChapitre">
-                <?= $data['content'] ?>
-                <em class="readMoreAndComment">
-                    <a href="roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-<?= $_SESSION['id'] ?>.html">Commenter</a>
-                </em>
+           <div class="chapitreBorder">
+                <h3>
+                    <?= htmlspecialchars($data['title']) ?>
+                    <br>
+                    <em>paru le <?= $data['creation_date_fr'] ?></em>
+                    <?php
+                    if ($_SESSION['permission'] == 1) {
+                    ?>
+                    <br>
+                    <a href="editer-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>.html">Modifier</a> /
+                    <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book_id=<?= $_GET['id'] ?>&amp;bookTitle=<?= $_GET['title'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
+                    <?php
+                    }
+                    ?>
+                </h3>
+                <div class="contenuChapitre">
+                    <?= $data['summary'] ?>
+                    <br />
+                    <em class="readMoreAndComment">
+                        <a class="animated pulse" href="roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-<?= $_SESSION['id'] ?>.html"> Lire la suite et commenter</a>
+                    </em>
+                </div>
             </div>
         </div>
         <?php
-        } else {
-            $nChapitre = $nChapitre + 1;
-        ?>
-        <div id="<?=$nChapitre ?>" class="chapter chapter<?= $data['id'] ?>">
-            <h3>
-                <?= htmlspecialchars($data['title']) ?>
-                <br>
-                <em>paru le <?= $data['creation_date_fr'] ?></em>
-                <?php
-                if ($_SESSION['permission'] == 1) {
-                ?>
-                <br>
-                <a href="editer-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>.html">Modifier</a> /
-                <a class='delete' href="index.php?action=delete&amp;postId=<?= $data['id'] ?>&amp;book_id=<?= $_GET['id'] ?>&amp;bookTitle=<?= $_GET['title'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?');">Supprimer</a>
-                <?php
-                }
-                ?>
-            </h3>
-            <div class="contenuChapitre">
-                <?= $data['contentMin'] ?>...
-                <br />
-                <em class="readMoreAndCommentMin">
-                    <a href="roman-<?= $_GET['id'] ?>-<?= $_GET['title'] ?>-chapitre-<?= $data['id'] ?>-<?= $titleEdit ?>-<?= $_SESSION['id'] ?>.html"> Lire la suite et commenter</a>
-                </em>
-            </div>
-        </div>
-        <?php
-            }
         $arrTitle[] = htmlspecialchars($data['title']);
         $arrId[] = $nChapitre;
         }
@@ -92,7 +66,7 @@ ob_start();
             <input id="checkBox" type="checkbox">
             <label id="loupe" class="checkBox" for="checkBox"></label>
             <div id="searchBar">
-                <form method="post" action="redirectionChapitre.php">
+                <form method="post" action="index.php?action=goToChapter">
                     <label for="deplacement">choississez votre chapitre</label>
                     <select name="ancre" id="deplacement">
                     <?php

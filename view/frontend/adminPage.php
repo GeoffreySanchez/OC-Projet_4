@@ -17,7 +17,7 @@ ob_start();
             <?php
             if ($_SESSION['permission'] == 1) {
             ?>
-            <h3>Consultation / Création / édition / suppréssion</h3>
+            <h3>Consultation / Création / Edition / Suppression</h3>
             <?php
             } else {
             ?>

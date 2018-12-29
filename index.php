@@ -17,6 +17,11 @@ try {
             listPosts();
         }
 
+        // Condition pour naviguer vers un chapitre sur la page //
+        if ($_GET['action'] == 'goToChapter') {
+            goToChapter();
+        }
+
         // Condition qui affiche un chapitre en particulier //
         elseif ($_GET['action'] == 'post') {
             // On vérifie sur l'id du chapitre est bien présent //
@@ -126,7 +131,7 @@ try {
 
         // Condition qui permet d'ajouter un nouveau chapitre dans la base de donnée //
         elseif ($_GET['action'] == "addNewPost") {
-            addNewPost($_GET['bookId'], $_POST['contentTitle'], $_POST['contentToAdd']);
+            addNewPost($_GET['bookId'], $_POST['contentTitle'], $_POST['chapterSummary'], $_POST['contentToAdd']);
         }
 
         // Condition qui permet d'afficher la page pour modifier un nouveau chapitre //
@@ -145,7 +150,7 @@ try {
 
         // Condition qui permet de modifier les données d'un chapitre //
         elseif ($_GET['action'] == "modifyPost") {
-            modifyPost($_POST['contentTitle'], $_POST['contentToAdd'], $_GET['postId'], $_GET['bookId'], $_GET['bookTitle']);
+            modifyPost($_POST['contentTitle'], $_POST['chapterSummary'], $_POST['contentToAdd'], $_GET['postId'], $_GET['bookId'], $_GET['bookTitle']);
         }
 
 

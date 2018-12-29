@@ -103,9 +103,9 @@ function newPostPage() {
 }
 
 // Permet d'ajouter un nouveau chapitre au roman selectionné //
-function addNewPost($bookId, $postTitle, $postContent) {
+function addNewPost($bookId, $postTitle, $postSummary, $postContent) {
     $postManager = new PostManager();
-    $addPost = $postManager->addNewPost($bookId, $postTitle, $postContent);
+    $addPost = $postManager->addNewPost($bookId, $postTitle, $postSummary, $postContent);
     if ($pushPost === false) {
         throw new Exception('Impossible d\'ajouter le nouveau chapitre');
     }
@@ -122,9 +122,9 @@ function modifyPostPage($postId) {
 }
 
 // Modifie dans la base de donnée les éléments saisies dans le formulaire //
-function modifyPost($postTitle, $postContent, $postId, $bookId, $bookTitle) {
+function modifyPost($postTitle, $chapterSummary, $postContent, $postId, $bookId, $bookTitle) {
     $postManager = new PostManager();
-    $returnPost = $postManager->modifyPost($postTitle, $postContent, $postId);
+    $returnPost = $postManager->modifyPost($postTitle, $chapterSummary, $postContent, $postId);
     if ($modifyPost === false) {
         throw new exception('Impossible de modifier ce roman');
     }
@@ -286,4 +286,14 @@ function home() {
     $publishedBooks = $bookManager->getPublishedBooks();
     $unpublishedBooks = $bookManager->getUnpublishedBooks();
     require('view/frontend/homePage.php');
+}
+
+// Navigue jusqu'à l'url du formulaire //
+function goToChapter() {
+    if ( isset($_POST['ancre']) && !empty($_POST['ancre'])) {
+        header("Location: ".$_POST['ancre']."");
+    }
+    else {
+        header("Location: index.php");
+    }
 }
