@@ -2,9 +2,22 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Administration';
+if ($_GET['action'] == 'newBook') {
+    $pageTitle = 'Nouveau roman';
+} else if ($_GET['action'] == 'newPost') {
+    $pageTitle = 'Nouveau chapitre';
+}
 ob_start();
 ?>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 300,
+        theme: 'modern',
+        plugins: 'lists advlist image imagetools',
+        language_url : 'public/langs/fr_FR.js'
+    });
+</script>
 <div id="content">
     <div id="PageTitle">
         <h1>
@@ -52,7 +65,7 @@ ob_start();
             }
         ?>
         " method='post'>
-            <label for="contentTitle">
+            <label for="contentTitle" class="blackUnderline">
                 Titre du
                 <?php
                 if ($_GET['action'] == 'newBook') {
@@ -67,7 +80,15 @@ ob_start();
                 ?>
             </label>
             <input type="text" name="contentTitle" id="contentTitle" required>
-            <label for="contentToAdd">
+            <?php
+            if ($_GET['action'] == 'newPost') {
+            ?>
+            <label for="chapterSummary" class="blackUnderline">Résumé du chapitre :</label>
+            <textarea name="chapterSummary" id="chapterSummary" cols="30" rows="10"></textarea>
+            <?php
+            }
+            ?>
+            <label for="contentToAdd" class="contentToAddMargin blackUnderline">
                 <?php
                 if ($_GET['action'] == 'newBook') {
                 ?>
@@ -103,11 +124,3 @@ ob_start();
 $content = ob_get_clean();
 require('template.php');
 ?>
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        height: 500,
-        theme: 'modern',
-        plugins: 'lists advlist image imagetools'
-    });
-</script>

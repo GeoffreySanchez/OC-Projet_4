@@ -2,7 +2,7 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Mes romans';
+$pageTitle = 'Mes romans';
 ob_start();
 ?>
 <div id="content" class="bookList">
@@ -36,7 +36,7 @@ ob_start();
                 $title = $data2['title'];
                 $titleEdit = str_replace(' ','',ucwords($title));
         ?>
-        <div id="workInProgress">
+        <div class="workInProgress">
             <div class="book_title">
                 <h3>
                     <?= htmlspecialchars($data2['title']) ?>

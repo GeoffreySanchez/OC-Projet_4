@@ -1,9 +1,9 @@
 Options +FollowSymlinks
 RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#RewriteCond %{HTTPS} !=on
+#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# Retirer le commentaire ligne 8 avant d'exporter
+# Retirer le commentaire ligne 3/4/8 avant d'exporter
 #----------------------------------------#
                 #RewriteBase /
 #----------------------------------------#
@@ -24,10 +24,10 @@ RewriteRule	^administration.html$	index.php?action=adminPage	[L]
 RewriteRule	^administration-commentaires.html$	index.php?action=adminComments	[L]
 
 # règle pour les romans #
-RewriteRule	^roman-([\d]+)-([\w']+).html$	index.php?action=listPosts&id=$1&title=$2	[L]
+RewriteRule	^roman-([\d]+)-([\w'éèà]+).html$	index.php?action=listPosts&id=$1&title=$2	[L]
 
 # règle pour accéder aux chapitres #
-RewriteRule	^roman-([\d]+)-([\w']+)-chapitre-([\d]+)-([\w]+)-([\wé]+).html$	index.php?action=post&book_id=$1&book_title=$2&id=$3&title=$4&user_id=$5	[L]
+RewriteRule	^roman-([\d]+)-(.+)-chapitre-([\d]+)-(.+)-([\wé]+).html$	index.php?action=post&book_id=$1&book_title=$2&id=$3&title=$4&user_id=$5	[L]
 
 # règle pour ajouter un nouveau chapitre #
 RewriteRule	^ajouter-chapitre-([\d]+)-([\w']+).html$	index.php?action=newPost&bookId=$1&bookTitle=$2	[L]

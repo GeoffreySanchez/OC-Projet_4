@@ -11,7 +11,7 @@ if (!isset($_SESSION['id'])) {
 if (!isset($_SESSION['permission'])) {
     $_SESSION['permission'] = '3';
 }
-$title = 'Bienvenue sur le blog de Jean Forteroche';
+$pageTitle = 'Bienvenue sur le blog de Jean Forteroche';
 ob_start();
 ?>
 <div id="content">
@@ -21,21 +21,20 @@ ob_start();
             <img src="public/images/man-person-black-and-white-hair-white-photography-1384121-pxhere.com.jpg" alt="photo ecrivain">
         </div>
         <div id="texteAuteur">
-           <div class="shadow">
-                <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.
-                <br />
-                <br />
-                Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.
-                <br />
-                <br />
-                Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant. Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant."</p>
-            </div>
+            <p>Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant.
+            </p>
+            <p>
+            Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant quicquid qua caelibes qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant.
+            </p>
+            <p>
+            Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant. Vero extra liberis et et orbos qua urbis vero quorundam nec et caelibes vile et credi quicquid qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant qua caelibes aestimant."
+            </p>
         </div>
     </div>
     <div>
         <div id="projetEnCours">
             <h2>Les projets en cours :</h2>
-            <div id="projets">
+            <div class="projets">
                 <?php
                 while ($data = $publishedBooks->fetch()) {
                     if($data['publish'] == 1) {
@@ -59,7 +58,7 @@ ob_start();
         </div>
         <div id="projetAVenir">
             <h2>Les projets à venirs :</h2>
-            <div id="projets">
+            <div class="projets">
                 <?php
                 while ($data2 = $unpublishedBooks->fetch()) {
                     if($data2['publish'] == 0) {

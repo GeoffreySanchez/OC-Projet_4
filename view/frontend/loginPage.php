@@ -2,7 +2,7 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Identifiez vous';
+$pageTitle = 'Identifiez vous';
 ob_start();
 ?>
 <div id="content">
@@ -22,8 +22,16 @@ ob_start();
     <hr />
     <div id="formulaireConnexion">
         <form method="post" action="index.php?action=loginVerification">
-            <label for="idField">Identifiant</label><input type="text" id="idField" name="idField" required>
-            <label for="pwField">Mot de passe</label><input type="password" id="pwField" name="pwField" required>
+            <label for="idField">Identifiant</label>
+            <input type="text" id="idField" name="idField" required>
+            <label for="pwField">Mot de passe</label>
+            <div id="pwInput">
+                <input type="password" id="pwField" name="pwField" required>
+                <div id="afficherMdpBox">
+                    <div id="afficherMdp"></div>
+                    <div id="masquerMdp"></div>
+                </div>
+            </div>
             <label for="envoyerConnexion" id="envoyerConnexionAlign">
             <input id="envoyerConnexion" type="submit"></label>
         </form>

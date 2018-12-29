@@ -2,9 +2,22 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Administration';
+if ($_GET['action'] == 'modifyBookPage') {
+    $pageTitle = 'Modification du roman';
+} else if ($_GET['action'] == 'modifyPostPage') {
+    $pageTitle = 'Modification du chapitre';
+}
 ob_start();
 ?>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        theme: 'modern',
+        plugins: 'lists advlist image imagetools',
+        language_url : 'public/langs/fr_FR.js'
+    });
+</script>
 <div id="content">
     <div id="PageTitle">
         <h1>Mise à jour du
@@ -31,7 +44,7 @@ ob_start();
             <?php
             } else if ($_GET['action'] == 'modifyPostPage') {
             ?>
-            chapitre, veuillez saisir son nouveau titre ou nouveau  contenu si necessaire.
+            chapitre, veuillez saisir son nouveau titre, résumé ou contenu si necessaire.
             <?php
                 }
             ?>
@@ -42,9 +55,9 @@ ob_start();
         if ($_GET['action'] == 'modifyBookPage') {
         ?>
         <form action="index.php?action=modifyBook&amp;bookId=<?= $_GET['bookId']?>" method='post'>
-            <label for="contentTitle">Titre du roman :</label>
+            <label for="contentTitle" class="blackUnderline">Titre du roman :</label>
             <input type="text" name="contentTitle" id="contentTitle" value="<?= $returnBook['title']?>" required>
-            <label for="contentToAdd">Extrait du roman :</label>
+            <label for="contentToAdd" class="blackUnderline">Extrait du roman :</label>
             <textarea name="contentToAdd" id="contentToAdd" cols="30" rows="10"><?= $returnBook['summary']?></textarea>
             <div id='alignNewContentBtn'>
             <input id='createNewContent' type="submit" value="Modifier roman">
@@ -54,9 +67,11 @@ ob_start();
         } elseif ($_GET['action'] == 'modifyPostPage') {
         ?>
         <form action="index.php?action=modifyPost&amp;postId=<?= $_GET['postId']?>&amp;bookId=<?= $_GET['bookId']?>&amp;bookTitle=<?= $_GET['bookTitle']?>" method='post'>
-            <label for="contentTitle">Titre du chapitre :</label>
+            <label for="contentTitle" class="blackUnderline">Titre du chapitre :</label>
             <input type="text" name="contentTitle" value="<?= $returnPost['title']?>" id="contentTitle" required>
-            <label for="contentToAdd">Contenu du chapitre :</label>
+            <label for="chapterSummary" class="blackUnderline">Contenu du résumé :</label>
+            <textarea name="chapterSummary" id="chapterSummary" cols="30" rows="10"><?= $returnPost['summary']?></textarea>
+            <label for="contentToAdd" class="contentToAddMargin blackUnderline">Contenu du chapitre :</label>
             <textarea name="contentToAdd" id="contentToAdd" cols="30" rows="10"><?= $returnPost['content']?></textarea>
             <div id='alignNewContentBtn'>
             <input id='createNewContent' type="submit" value="Modifier chapitre">
@@ -71,11 +86,3 @@ ob_start();
 $content = ob_get_clean();
 require('template.php');
 ?>
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        height: 500,
-        theme: 'modern',
-        plugins: 'lists advlist image imagetools'
-    });
-</script>

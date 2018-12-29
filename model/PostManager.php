@@ -8,7 +8,7 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('
-        SELECT id, title, content, SUBSTRING(content, 1, 2000) AS contentMin, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr
+        SELECT id, title, content, summary, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr
         FROM posts
         WHERE book_id = ?
         ORDER BY creation_date ASC');
@@ -21,7 +21,7 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('
-        SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr
+        SELECT id, title, summary, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr
         FROM posts
         WHERE id = ?');
         $req->execute(array($postId));
@@ -41,25 +41,25 @@ class PostManager extends Manager
     }
 
     // Ajoute un nouveau chapitre dans la base de donnée //
-    public function addNewPost($bookId, $postTitle, $postContent)
+    public function addNewPost($bookId, $postTitle, $postSummary, $postContent)
     {
         $db = $this->dbConnect();
         $addPost = $db->prepare('
-        INSERT INTO posts (book_id, title, content, creation_date)
-        VALUES (?, ?, ?, NOW())');
-        $pushBook = $addPost->execute(array($bookId, $postTitle, $postContent));
+        INSERT INTO posts (book_id, title, summary, content, creation_date)
+        VALUES (?, ?, ?, ?, NOW())');
+        $pushBook = $addPost->execute(array($bookId, $postTitle, $postSummary, $postContent));
         return $pushPost;
     }
 
     // Modifie un chapitre grâce a son id //
-    public function modifypost($postTitle, $postContent, $postId)
+    public function modifypost($postTitle, $chapterSummary, $postContent, $postId)
     {
         $db = $this->dbConnect();
         $bookToModify = $db->prepare('
         UPDATE posts
-        SET title = ?, content = ?
+        SET title = ?, summary = ?, content = ?
         WHERE id = ?');
-        $modifyPost = $bookToModify->execute(array($postTitle, $postContent, $postId));
+        $modifyPost = $bookToModify->execute(array($postTitle, $chapterSummary, $postContent, $postId));
         return $modifyPost;
     }
 }

@@ -2,7 +2,7 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Administration des commentaires';
+$pageTitle = 'Administration des commentaires';
 ob_start();
 ?>
 <div id="content">
@@ -22,15 +22,16 @@ ob_start();
                 while($reportedComment = $reportedComments->fetch()) {
             ?>
             <div class="comment">
-                <p>
-                    <strong><?= htmlspecialchars($reportedComment['name']) ?></strong>
-                    , le <?= $reportedComment['comment_date_fr'] ?>
-                    <br />
-                    <?= nl2br(htmlspecialchars($reportedComment['comment'])) ?>
-                </p>
-                <div class="linkPosition">
-                    <a class="modify" href="index.php?action=validComment&amp;commentId=<?= $reportedComment['id'] ?>">Accepter le commentaire</a>
-                    <a href="index.php?action=delete&amp;commentId=<?= $reportedComment['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
+                <div class="commentDate">
+                <strong><?= htmlspecialchars($reportedComment['name']) ?></strong> le
+                <?= $reportedComment['comment_date_fr'] ?>
+            </div>
+            <div>
+                <?= nl2br(htmlspecialchars($reportedComment['comment'])) ?>
+            </div>
+                <div class="linkPosition dotLine">
+                    <a href="index.php?action=validComment&amp;commentId=<?= $reportedComment['id'] ?>" class="redUnderline">Accepter le commentaire</a>
+                    <a href="index.php?action=delete&amp;commentId=<?= $reportedComment['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?');" class="redUnderline">Supprimer</a>
                 </div>
             </div>
             <?php

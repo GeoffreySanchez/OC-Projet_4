@@ -2,7 +2,7 @@
 if (session_id() == '') {
    session_start();
 }
-$title = 'Administration';
+$pageTitle = 'Administration';
 ob_start();
 ?>
 <div id="content">

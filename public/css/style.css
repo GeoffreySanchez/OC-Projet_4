@@ -10,7 +10,6 @@
   font-style: normal;
  }
 
-
   /*****************************/
  /*-Reset + background+ fonts-*/
 /*****************************/
@@ -19,7 +18,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: rgb(220, 223, 229);
+    background-color: white;
     font-family: 'Cardo', serif;
 }
 
@@ -37,8 +36,7 @@ h2 {
 }
 
 h3 {
-    background-color: rgb(131, 144, 152);
-    color: white;
+    color: black;
     margin-bottom: 0;
     padding: 5px;
 }
@@ -52,8 +50,9 @@ h4 {
 }
 
 h3 a {
-    color: white;
+    color: black;
     text-decoration: underline;
+    text-decoration-color: red;
 }
 
 a {
@@ -78,12 +77,12 @@ li {
 }
 
 li a {
-    color: white;
+    color: black;
     padding: 3px;
 }
 
 li a:hover {
-    border-bottom: 1px black solid;
+    border-bottom: 1px red solid;
     padding-bottom: 5px;
     color: black;
 }
@@ -97,15 +96,8 @@ label {
 }
 
 em a {
-    color: rgb(131, 144, 152);
-    text-decoration: underline;
-}
-
-em a:hover {
-    text-decoration: none;
-    color: white;
-    background-color: rgb(131, 144, 152);
-    padding: 3px;
+    border-bottom: red solid 1px;
+    color: black;
 }
 
 hr {
@@ -115,6 +107,15 @@ hr {
 
 a i {
     padding-top: 5px;
+}
+
+.redUnderline {
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+.blackUnderline {
+    text-decoration: underline;
 }
 
 
@@ -128,7 +129,8 @@ header {
     top: 0;
     width: 100%;
     min-height: 75px;
-    background-color: rgb(131,144,152);
+    background-color: rgba(255,255,255,0.9);
+    border-bottom: solid 1px black;
 }
 
 nav {
@@ -146,6 +148,18 @@ nav {
     position: absolute;
 }
 
+#arrow {
+    position: fixed;
+    right: 30px;
+    bottom: 75px;
+}
+#arrow img {
+    width: 35px;
+    padding: 5px;
+    background-color: rgba(220,220,220,0.7);
+    border-radius: 25%;
+}
+
 
   /***********/
  /*-Contenu-*/
@@ -157,10 +171,9 @@ nav {
     margin-left: 10%;
     margin-right: 10%;
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: white;
     z-index: 1;
     min-height: 100%;
 }
@@ -171,15 +184,11 @@ nav {
 /**********/
 
 footer {
-    background-color: rgb(131,144,152);
-    bottom: -145px;
-    width: 100%;
-    z-index: 2;
+    border-top: solid 1px black;
 }
 
 #contact {
     display: flex;
-    padding-top: 10px;
     padding-bottom: 10px;
     flex-direction: column;
     margin-left: 3%;
@@ -206,29 +215,30 @@ contactCourrier {
     margin-bottom: 15px;
 }
 
+#contactMail p {
+    margin-left: 5px;
+}
 
 #contactCourrier {
     display: flex;
 }
 
 #contactCourrier img {
-    max-height: 51px;
+    height: 50px;
 }
 
 footer p,
 footer a {
-    color: white;
+    color: black;
 }
 
+#adresse {
+    border-bottom: solid 1px red;
+}
 #contact div {
     margin-top: 0;
     padding-top: 15px;
     padding-left: 5px;
-}
-
-#contact h4 {
-    color: white;
-    text-decoration: underline;
 }
 
 
@@ -247,7 +257,6 @@ footer a {
 }
 
 #photoAuteur img {
-    max-width: 400px;
     width: 100%;
 }
 
@@ -259,7 +268,6 @@ footer a {
 }
 
 #texteAuteur p {
-    background-color: rgb(220, 223, 229);
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
@@ -271,7 +279,7 @@ footer a {
     margin-top: 50px;
 }
 
-#projets {
+.projets {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -280,18 +288,15 @@ footer a {
 .projet {
     text-align: center;
     max-width: 310px;
-    background-color: rgb(220, 223, 229);
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: solid 1px;
 }
 
-.shadow {
-    box-shadow: 7px 7px 40px 6px rgba(0,0,0,0.75);
-}
 
 
   /****************/
@@ -310,9 +315,9 @@ footer a {
     max-width: 300px;
     display: flex;
     padding: 15px;
-    background-color: rgb(220, 223, 229);
     flex-direction: column;
     justify-content: space-between;
+    border: solid 1px;
 }
 
 #book h3 {
@@ -325,20 +330,24 @@ footer a {
     justify-content: center;
 }
 
+.book_title h3 {
+    color: black;
+}
+
 #listeChapitre {
     text-align: center;
 }
 
-#workInProgress {
+.workInProgress {
     max-width: 300px;
     height: 350px;
     padding: 15px;
-    background-color: rgb(220, 223, 229);
     display: flex;
     flex-direction: column;
+    border: solid 1px;
 }
 
-#workInProgress #summary {
+.workInProgress #summary {
     margin-top: 100px;
 }
 
@@ -347,16 +356,18 @@ footer a {
  /*-Listes chapitres-*/
 /********************/
 
-#retourRoman {
+#retourPrecedent {
     width: 200px;
     text-align: center;
-    background-color: rgb(131, 144, 152);
     padding: 5px;
+    padding-top: 15px;
     margin-bottom: 5px;
 }
 
-#retourRoman a {
-    color: white;
+#retourPrecedent a {
+    color: black;
+    border-top: solid 1px red;
+    padding-top: 3px;
 }
 
 #addPost {
@@ -367,8 +378,8 @@ footer a {
 }
 
 #addPost a, #addFirstPost a {
-    color: white;
-    background-color: rgb(131, 144, 152);
+    color: black;
+    border-bottom: solid 1px red;
     padding: 5px;
 }
 
@@ -388,7 +399,6 @@ footer a {
 
 .contenuChapitre {
     padding-top: 10px;
-    background-color: rgb(220, 223, 229);
     padding-bottom: 10px;
 }
 
@@ -396,7 +406,6 @@ footer a {
     margin-bottom: 0 !important;
     padding-right: 10px !important;
     padding-left: 10px !important;
-    background-color: rgb(220, 223, 229) !important;
     margin-top: 0px !important;
     padding-right: 10px !important;
     padding-left: 10px !important;
@@ -417,9 +426,16 @@ footer a {
     padding-top: 60px;
 }
 
+.chapitreBorder {
+    border: solid 1px black;
+}
+
 .chapter h3 {
     min-width: 210px;
-    padding-left: 5px;
+    padding-left: 10px;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: solid 1px black;
 }
 
 .readMoreAndComment {
@@ -428,17 +444,16 @@ footer a {
     padding-left: 10px;
 }
 
-.readMoreAndCommentMin {
-    display: flex;
-    padding-top: 10px;
-}
-
 #checkBox, #searchBar {
     display: none;
 }
 
 .checkBox:hover {
     cursor: pointer;
+}
+#afficherMdp {
+    background-image: url(public/images/oeil.png);
+    background-size: contain;
 }
 
 #loupe:before {
@@ -455,10 +470,12 @@ footer a {
 
 #searchBar {
     margin-top: 10px;
+    margin-left: 15px;
 }
 
 #loupe {
     max-width: 25px;
+    margin-left: 15px;
 }
 
 .reverse {
@@ -472,25 +489,42 @@ footer a {
 /*************************/
 
 #commentWriter {
-    width: 100%;
-    max-width: 210px;
+    width: 375px;
+    height: 50px;
+}
+
+.reportCommentSeparation {
+    border-top: dashed 1px;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+.reportCommentSeparation p {
+    margin: 0;
+}
+
+.commentDate {
+    margin-bottom: 10px;
 }
 
 .comment {
-    max-width: max-content;
-    max-width: -moz-max-content;
+    max-width: 380px;
     margin-top: 5px;
-    background-color: rgb(220, 223, 229);
+    padding-bottom: 7px;
+    border: solid 1px;
 }
 
-.comment p {
-    width: 100%;
-    padding: 7px;
+.comment div {
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
 }
 
 .comment a {
     margin-top: 5px;
-    color: red;
+    padding-left: 7px;
+    color: black;
 }
 
 
@@ -510,20 +544,14 @@ footer a {
 
 #retourMainPage a {
     padding: 5px;
-    background-color: rgb(131,144,152);
-    color: white;
+    color: black;
+    border-bottom: solid 1px red;
 }
 
 #formulaireConnexion {
     margin-top: 50px;
     display: flex;
     justify-content: center;
-}
-
-#formulaireConnexion form {
-    display: flex;
-    flex-direction: column;
-    max-width: 200px;
 }
 
 #formulaireConnexion form label {
@@ -533,6 +561,45 @@ footer a {
 #envoyerConnexionAlign {
     display: flex;
     justify-content: center;
+}
+
+#afficherMdpBox {
+    width: 27px;
+    height: 27px;
+}
+
+#afficherMdp, #masquerMdp {
+    cursor: pointer;
+    width: 100%;
+    margin-left: 10px;
+}
+
+#masquerMdp {
+    display: none;
+}
+
+#afficherMdp:before {
+    font-family: FontAwesome;
+    content: "\f06e";
+    font-size: 27px;
+}
+
+#masquerMdp:before {
+    font-family: FontAwesome;
+    content: "\f070";
+    font-size: 27px;
+}
+
+#idField, #pwField{
+    width: 213px;
+}
+
+#pwInput {
+    display: flex;
+}
+
+#pwInput input {
+    height: 21px !important;
 }
 
 
@@ -553,7 +620,6 @@ footer a {
 
 .section h3 {
     color: black;
-    background-color: rgb(220, 223, 229);
     border: solid black 1px;
     padding: 10px;
     margin-bottom: 50px;
@@ -569,6 +635,7 @@ footer a {
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-top: 10px;
 }
 
 .linkPosition a {
@@ -577,7 +644,6 @@ footer a {
 
 .delete {
     color: red;
-    cursor: pointer;
 }
 
 .modify {
@@ -618,6 +684,10 @@ footer a {
     text-decoration: underline;
 }
 
+.dotLine {
+   border-top: dashed 1px;
+}
+
 
 
   /*************************/
@@ -641,6 +711,11 @@ footer a {
 #createNewContent {
     min-height: 30px;
     width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.contentToAddMargin {
     margin-top: 10px;
 }
 
@@ -666,6 +741,12 @@ footer a {
 
 
 @media screen and (min-width: 100px) and (max-width: 710px) {
+
+    /*-content-*/
+    #content {
+        margin-top: 100px;
+    }
+
 
     /*-Header / nav-*/
     nav {
@@ -693,15 +774,17 @@ footer a {
     #book, #workInProgress {
         margin-bottom: 15px;
     }
+
+
+    /*-Liste chapitres-*/
+    #retourPrecedent {
+        margin: 0 auto;
+    }
 }
 
+
+
 @media screen and (min-width: 100px) and (max-width: 625px) {
-
-    /*-content-*/
-    #content {
-        margin-top: 95px;
-    }
-
 
     /*-Home Page-*/
     #presentation {
@@ -724,13 +807,6 @@ footer a {
         width: 100%;
         margin-left: 0;
         padding-top: 20px;
-    }
-
-
-    /*-Chapitre/commentaires-*/
-    #commentWriter {
-        max-width: none;
-        height: 40px;
     }
 }
 

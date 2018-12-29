@@ -3,11 +3,11 @@ if (session_id() == '') {
    session_start();
 }
 ?>
-<?php $title = htmlspecialchars($post['title']);
+<?php $pageTitle = htmlspecialchars($post['title']);
 ob_start();
 ?>
 <div id="content">
-    <div id="retourRoman" class="animated pulse">
+    <div id="retourPrecedent" class="animated pulse">
         <a href="roman-<?= $_GET['book_id'] ?>-<?= $_GET['book_title'] ?>.html">Retour à la liste des chapitres</a>
     </div>
     <div class="chapter">
@@ -33,7 +33,7 @@ ob_start();
     while ($comment = $comments->fetch()) {
         if ($comment['report'] > 0) {
     ?>
-    <div style="background-color : rgba(255,0,0,0.3);" id="<?= $comment['commentId']?>" class="comment">
+    <div id="<?= $comment['commentId']?>" class="comment">
     <?php
         } else {
     ?>
@@ -41,20 +41,25 @@ ob_start();
         <?php
         }
         ?>
-            <p>
+            <div class="commentDate">
                 <strong><?= htmlspecialchars($comment['name']) ?></strong> le
                 <?= $comment['comment_date_fr'] ?>
-                <br />
-                <?= nl2br(htmlspecialchars($comment['comment'])) ?><br>
-            </p>
+            </div>
+            <div>
+                <?= nl2br(htmlspecialchars($comment['comment'])) ?>
+            </div>
             <?php
             if ($comment['report'] > 0) {
             ?>
-            <p>Ce commentaire a déjà été signalé</p>
+            <div class="reportCommentSeparation">
+                <p class="delete">Ce commentaire a déjà été signalé</p>
+            </div>
             <?php
             } else {
             ?>
-            <a href="index.php?action=reportComment&amp;id=<?= $_GET['id']?>&amp;book_id=<?= $_GET['book_id']?>&amp;user_id=<?= $_GET['user_id']?>&amp;comment_id=<?= $comment['commentId']?>&amp;book_title=<?= $_GET['book_title'] ?>&amp;post_title=<?= $_GET['title'] ?>">Signaler le commentaire</a>
+            <div class="reportCommentSeparation">
+                <a href="index.php?action=reportComment&amp;id=<?= $_GET['id']?>&amp;book_id=<?= $_GET['book_id']?>&amp;user_id=<?= $_GET['user_id']?>&amp;comment_id=<?= $comment['commentId']?>&amp;book_title=<?= $_GET['book_title'] ?>&amp;post_title=<?= $_GET['title'] ?>" class="redUnderline">Signaler le commentaire</a>
+            </div>
             <?php
                 }
             ?>
