@@ -46,7 +46,7 @@ ob_start();
                 } else {
                 ?>
                 <h3>
-                    <p><?= htmlspecialchars($data['title']) ?></p>
+                    <?= htmlspecialchars($data['title']) ?>
                 </h3>
                 <?php
                 }
