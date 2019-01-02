@@ -3,6 +3,18 @@
 require('controller/frontend.php');
 
 try {
+    if (session_id() == '') {
+   session_start();
+    }
+    if (!isset($_SESSION['name'])) {
+        $_SESSION['name'] = 'Visiteur';
+    }
+    if (!isset($_SESSION['id'])) {
+        $_SESSION['id'] = '4';
+    }
+    if (!isset($_SESSION['permission'])) {
+        $_SESSION['permission'] = '3';
+    }
       //-----------------------------------------------------------------------------------------------//
      // Conditions qui executent des fonctions si une ACTION est présente dans la barre de navigation //
     //-----------------------------------------------------------------------------------------------//
@@ -68,10 +80,6 @@ try {
 
         // Condition qui permet d'afficher la page pour ajouter un nouveau roman //
         elseif ($_GET['action'] == "newBook") {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 1) {
                     throw new Exception('Cette fonction est réservée aux écrivains');
                 }
@@ -87,10 +95,6 @@ try {
 
         // Condition qui permet d'afficher la page pour modifier un roman existant //
         elseif ($_GET['action'] == "modifyBookPage") {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 1) {
                     throw new Exception('Cette fonction est réservée aux écrivains');
                 }
@@ -117,10 +121,6 @@ try {
 
         // Condition qui permet d'afficher la page pour ajouter un nouveau chapitre //
         elseif ($_GET['action'] == "newPost") {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 1) {
                     throw new Exception('Cette fonction est réservée aux écrivains');
                 }
@@ -136,10 +136,6 @@ try {
 
         // Condition qui permet d'afficher la page pour modifier un nouveau chapitre //
         elseif ($_GET['action'] == "modifyPostPage") {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 1) {
                     throw new Exception('Cette fonction est réservée aux écrivains');
                 }
@@ -161,10 +157,6 @@ try {
 
         // Condition d'accès à la page d'administration des commentaires signalés //
         elseif($_GET['action'] == 'adminComments') {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 2) {
                throw new Exception('Cette page est réservée aux administrateurs');
             }
@@ -175,10 +167,6 @@ try {
 
         // Condition pour valider un commentaire qui a été signalé //
         elseif ($_GET['action'] == 'validComment') {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 2) {
                throw new Exception('Cette page est réservée aux administrateurs');
             }
@@ -196,10 +184,6 @@ try {
          // Condition global de suppression //
         //---------------------------------//
         elseif ($_GET['action'] == 'delete') {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             // Supprime un roman si on retrouve son id dans la barre d'adresse //
             if (isset($_GET['bookId']) && $_GET['bookId'] > 0) {
                 if ($_SESSION['permission'] > 1) {
@@ -262,10 +246,6 @@ try {
 
         // Condition d'accès a la page d'administration //
         elseif($_GET['action'] == 'adminPage') {
-            // On lance une session si nous n'en avons aucune d'ouverte //
-            if (session_id() == '') {
-                session_start();
-                }
             if ($_SESSION['permission'] > 2) {
                throw new Exception('Cette page est réservée aux administrateurs');
             }

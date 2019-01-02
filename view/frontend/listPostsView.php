@@ -1,16 +1,4 @@
 <?php
-if (session_id() == '') {
-   session_start();
-}
-if (!isset($_SESSION['name'])) {
-    $_SESSION['name'] = 'Visiteur';
-}
-if (!isset($_SESSION['id'])) {
-    $_SESSION['id'] = '4';
-}
-if (!isset($_SESSION['permission'])) {
-    $_SESSION['permission'] = '3';
-}
 $pageTitle = htmlspecialchars($book['title']);
 ob_start();
 ?>
