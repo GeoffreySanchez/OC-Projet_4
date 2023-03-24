@@ -20,6 +20,7 @@ function listBooks() {
     $bookManager = new BookManager;
     $publishedBooks = $bookManager->getPublishedBooks();
     $unpublishedBooks = $bookManager->getUnpublishedBooks();
+    $test = 'issou';
     require('view/frontend/listBooks.php');
 }
 
