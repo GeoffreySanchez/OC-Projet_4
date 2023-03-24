@@ -4,10 +4,10 @@
  // Chargement des classes //
 //------------------------//
 
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
-require_once('model/BookManager.php');
-require_once('model/LoginManager.php');
+  require_once('model/PostManager.php');
+  require_once('model/CommentManager.php');
+  require_once('model/BookManager.php');
+  require_once('model/LoginManager.php');
 
 
 
@@ -20,6 +20,7 @@ function listBooks() {
     $bookManager = new BookManager;
     $publishedBooks = $bookManager->getPublishedBooks();
     $unpublishedBooks = $bookManager->getUnpublishedBooks();
+    $test = 'issou';
     require('view/frontend/listBooks.php');
 }
 
